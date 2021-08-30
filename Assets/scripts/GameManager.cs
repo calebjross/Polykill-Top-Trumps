@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 /// <summary>
 /// 
@@ -37,7 +36,6 @@ public class GameManager : MonoBehaviour
             ypos += 0.5f;
             zpos -= 0.1f;
         }
-
     }
 
     /// <summary>

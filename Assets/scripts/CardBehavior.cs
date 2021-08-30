@@ -34,7 +34,7 @@ public class CardBehavior : MonoBehaviour
 
     // support for determining the top card
     bool isTopCard;
-    GameManager cardsArray;
+    GameManager gameManager;
 
 
     #endregion
@@ -47,32 +47,16 @@ public class CardBehavior : MonoBehaviour
 
     private void Awake()
     {
-        cardsArray = GetComponent<GameManager>();
+        gameManager = Camera.main.GetComponent<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = cardFront;
         isFaceUp = true;
     }
 
-    /// <summary>
-    /// Start is called before the first frame update
-    /// </summary>
-    void Start()
-    {
-        
-    }
-
-    /// <summary>
-    /// Update is called once per frame
-    /// </summary>
-    void Update()
-    {
-        
-    }
-
     private void OnMouseDown()
     {
-        //FlipCard();
         Destroy(gameObject);
+        Debug.Log(GetTopCard());
     }
 
     private void FlipCard()
@@ -88,7 +72,36 @@ public class CardBehavior : MonoBehaviour
 
     private void OnMouseOver()
     {
+        GetTopCard();
+    }
 
+    public GameObject GetTopCard()
+    {
+        // initial setup
+        GameObject[] cards = gameManager.cards;
+        GameObject topCard;
+        float lowestZed;
+        if (cards.Length == 0)
+        {
+            return null;
+        }
+        else
+        {
+            topCard = cards[0];
+            lowestZed = 0;
+        }
+
+        // find and return closest pickup
+        for (int i = 0; i < cards.Length; i++)
+        {
+            float zpos = cards[i].transform.position.z;
+            if (zpos < lowestZed)
+            {
+                topCard = cards[i];
+                lowestZed = cards[i].transform.position.z;
+            }
+        }
+        return topCard;
     }
 
     #endregion
