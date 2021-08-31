@@ -8,34 +8,31 @@ using UnityEngine;
 
 public class CardBehavior : MonoBehaviour
 {
+    //establish fields that will controlled via the inspector
     #region Fields
-    [SerializeField]
-    int triviaMastery;
-    [SerializeField]
-    int soulsBorneSkills;
-    [SerializeField]
-    int drinkMixing;
-    [SerializeField]
-    int gameCollection;
-    [SerializeField]
-    int speedRunning;
-    [SerializeField]
-    int polykilling;
     [SerializeField]
     Sprite cardFront;
     [SerializeField]
     Sprite cardBack;
 
-    //set sides of card
+    //will help set images on the top and bottom of card
     SpriteRenderer spriteRenderer;
 
     // determines face up status
-    bool isFaceUp = true;
+    public bool isFaceUp = false;
 
     // support for determining the top card
-    bool isTopCard;
     GameManager gameManager;
+    public bool isTopCard;
 
+    // support for exposing the stats
+    CardStats stats;
+    int triviaMastery;
+    int soulsBorneSkills;
+    int drinkMixing;
+    int gameCollection;
+    int speedRunning;
+    int polykilling;
 
     #endregion
 
@@ -47,38 +44,51 @@ public class CardBehavior : MonoBehaviour
 
     private void Awake()
     {
+        //establish card properties and state
         gameManager = Camera.main.GetComponent<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = cardFront;
-        isFaceUp = true;
+        spriteRenderer.sprite = cardBack;
+        stats = GetComponent<CardStats>();
+        triviaMastery = stats.triviaMastery;
+        soulsBorneSkills = stats.soulsBorneSkills;
+        drinkMixing = stats.drinkMixing;
+        gameCollection = stats.gameCollection;
+        speedRunning = stats.speedRunning;
+        polykilling = stats.polykilling;
     }
 
     private void OnMouseDown()
     {
-        Destroy(gameObject);
-        Debug.Log(GetTopCard());
+        if (isFaceUp && isTopCard)
+        {
+            Destroy(gameObject);
+        } else FlipCard();
     }
 
     private void FlipCard()
     {
-        if (isFaceUp == true)
+        if (!isFaceUp && isTopCard)
+        {
+            spriteRenderer.sprite = cardFront;
+            isFaceUp = true;
+        }
+        else if (!isFaceUp && !isTopCard)
         {
             spriteRenderer.sprite = cardBack;
             isFaceUp = false;
-        }
-        else spriteRenderer.sprite = cardFront;
-        isFaceUp = true;
+        } 
     }
 
     private void OnMouseOver()
     {
         GetTopCard();
+        Debug.Log("You are hovering over " + gameObject + "with an isTopCardValue of " + isTopCard + " but the top card is " + GetTopCard() + ". The polykilling stat is " + polykilling);
     }
 
     public GameObject GetTopCard()
     {
         // initial setup
-        GameObject[] cards = gameManager.cards;
+        GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
         GameObject topCard;
         float lowestZed;
         if (cards.Length == 0)
@@ -101,7 +111,19 @@ public class CardBehavior : MonoBehaviour
                 lowestZed = cards[i].transform.position.z;
             }
         }
+
+        if (topCard == gameObject)
+        {
+            isTopCard = true;
+        }
+        else isTopCard = false;
+
         return topCard;
+    }
+
+    private void Update()
+    {
+        
     }
 
     #endregion
