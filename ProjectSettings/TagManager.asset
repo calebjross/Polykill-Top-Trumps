@@ -4,6 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - PlayerCard
+  - ComputerCard
+  - Undefined
   - Card
   layers:
   - Default

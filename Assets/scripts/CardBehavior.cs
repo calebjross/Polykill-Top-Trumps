@@ -11,6 +11,18 @@ public class CardBehavior : MonoBehaviour
     //establish fields that will controlled via the inspector
     #region Fields
     [SerializeField]
+    public int triviaMastery;
+    [SerializeField]
+    public int soulsBorneSkills;
+    [SerializeField]
+    public int drinkMixing;
+    [SerializeField]
+    public int gameCollection;
+    [SerializeField]
+    public int speedRunning;
+    [SerializeField]
+    public int polykilling;
+    [SerializeField]
     Sprite cardFront;
     [SerializeField]
     Sprite cardBack;
@@ -24,15 +36,8 @@ public class CardBehavior : MonoBehaviour
     // support for determining the top card
     GameManager gameManager;
     public bool isTopCard;
-
-    // support for exposing the stats
-    CardStats stats;
-    int triviaMastery;
-    int soulsBorneSkills;
-    int drinkMixing;
-    int gameCollection;
-    int speedRunning;
-    int polykilling;
+    GameObject[] playerCards;
+    GameObject[] computerCards;
 
     #endregion
 
@@ -48,13 +53,6 @@ public class CardBehavior : MonoBehaviour
         gameManager = Camera.main.GetComponent<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = cardBack;
-        stats = GetComponent<CardStats>();
-        triviaMastery = stats.triviaMastery;
-        soulsBorneSkills = stats.soulsBorneSkills;
-        drinkMixing = stats.drinkMixing;
-        gameCollection = stats.gameCollection;
-        speedRunning = stats.speedRunning;
-        polykilling = stats.polykilling;
     }
 
     private void OnMouseDown()
@@ -81,34 +79,42 @@ public class CardBehavior : MonoBehaviour
 
     private void OnMouseOver()
     {
-        GetTopCard();
-        Debug.Log("You are hovering over " + gameObject + "with an isTopCardValue of " + isTopCard + " but the top card is " + GetTopCard() + ". The polykilling stat is " + polykilling);
+        GetTopCard(playerCards);
+        GetTopCard(computerCards);
+        Debug.Log("You are hovering over a " + gameObject.tag + "card called" + gameObject + "with an isTopCardValue of " + isTopCard);
     }
 
-    public GameObject GetTopCard()
+    public GameObject GetTopCard(GameObject [] array)
     {
         // initial setup
-        GameObject[] cards = GameObject.FindGameObjectsWithTag("Card");
+        if (array == playerCards)
+        {
+            array = GameObject.FindGameObjectsWithTag("PlayerCard");
+        } else if (array == computerCards)
+        {
+            array = GameObject.FindGameObjectsWithTag("ComputerCard");
+        }
+        
         GameObject topCard;
         float lowestZed;
-        if (cards.Length == 0)
+        if (array.Length == 0)
         {
             return null;
         }
         else
         {
-            topCard = cards[0];
+            topCard = array[0];
             lowestZed = 0;
         }
 
         // find and return closest pickup
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            float zpos = cards[i].transform.position.z;
+            float zpos = array[i].transform.position.z;
             if (zpos < lowestZed)
             {
-                topCard = cards[i];
-                lowestZed = cards[i].transform.position.z;
+                topCard = array[i];
+                lowestZed = array[i].transform.position.z;
             }
         }
 

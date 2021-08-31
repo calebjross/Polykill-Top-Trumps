@@ -8,19 +8,18 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2073873947550605502}
+  - component: {fileID: 2739139663468895695}
   - component: {fileID: 7219781325159492032}
-  - component: {fileID: 2218481658895400430}
   - component: {fileID: 834161309305518784}
-  - component: {fileID: 5902352099993997088}
+  - component: {fileID: 2218481658895400430}
   m_Layer: 3
   m_Name: Card_Burgerchamp
-  m_TagString: Card
+  m_TagString: ComputerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2073873947550605502
+--- !u!4 &2739139663468895695
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,21 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2218481658895400430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3893467100384277409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c06e30020c2f4a5458b5680b6b70187a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardFront: {fileID: 21300000, guid: f406f21c2a9d2d9448a782debeebd28d, type: 3}
-  cardBack: {fileID: 21300000, guid: 95f6ef2b82aa9b24790125367956d805, type: 3}
-  isTopCard: 0
 --- !u!61 &834161309305518784
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -126,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.48, y: 6.29}
   m_EdgeRadius: 0
---- !u!114 &5902352099993997088
+--- !u!114 &2218481658895400430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +119,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3893467100384277409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efcc893d16e8ac84c8ee0a72db2f94ec, type: 3}
+  m_Script: {fileID: 11500000, guid: c06e30020c2f4a5458b5680b6b70187a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triviaMastery: 93
@@ -144,3 +128,7 @@ MonoBehaviour:
   gameCollection: 82
   speedRunning: 11
   polykilling: 25
+  cardFront: {fileID: 21300000, guid: f406f21c2a9d2d9448a782debeebd28d, type: 3}
+  cardBack: {fileID: 21300000, guid: 95f6ef2b82aa9b24790125367956d805, type: 3}
+  isFaceUp: 0
+  isTopCard: 0
