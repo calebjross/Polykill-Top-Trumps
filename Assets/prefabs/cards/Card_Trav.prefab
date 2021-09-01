@@ -131,4 +131,5 @@ MonoBehaviour:
   cardFront: {fileID: 21300000, guid: ff8687a35d96b53419d77fd1d233c578, type: 3}
   cardBack: {fileID: 21300000, guid: 95f6ef2b82aa9b24790125367956d805, type: 3}
   isFaceUp: 0
-  isTopCard: 0
+  isPlayerTopCard: 0
+  isComputerTopCard: 0

@@ -35,7 +35,8 @@ public class CardBehavior : MonoBehaviour
 
     // support for determining the top card
     GameManager gameManager;
-    public bool isTopCard;
+    public bool isPlayerTopCard;
+    public bool isComputerTopCard;
     GameObject[] playerCards;
     GameObject[] computerCards;
 
@@ -55,46 +56,62 @@ public class CardBehavior : MonoBehaviour
         spriteRenderer.sprite = cardBack;
     }
 
+    /// <summary>
+    /// MouseDown click actions
+    /// </summary>
     private void OnMouseDown()
     {
-        if (isFaceUp && isTopCard)
+        if (isFaceUp && isPlayerTopCard)
         {
             Destroy(gameObject);
         } else FlipCard();
     }
 
+    /// <summary>
+    /// Determines whether or not a player card can be flipped over
+    /// </summary>
     private void FlipCard()
     {
-        if (!isFaceUp && isTopCard)
+        if (!isFaceUp && isPlayerTopCard)
         {
             spriteRenderer.sprite = cardFront;
             isFaceUp = true;
         }
-        else if (!isFaceUp && !isTopCard)
+        else if (!isFaceUp && !isPlayerTopCard)
         {
             spriteRenderer.sprite = cardBack;
             isFaceUp = false;
         } 
     }
 
+    /// <summary>
+    /// Used prmiarly to send debug.log messages. MouseOver has no gameplay functionality
+    /// </summary>
     private void OnMouseOver()
     {
-        GetTopCard(playerCards);
-        GetTopCard(computerCards);
-        Debug.Log("You are hovering over a " + gameObject.tag + "card called" + gameObject + "with an isTopCardValue of " + isTopCard);
-    }
-
-    public GameObject GetTopCard(GameObject [] array)
-    {
-        // initial setup
-        if (array == playerCards)
+        GetPlayerTopCard();
+        GetComputerTopCard();
+        
+        if (gameObject.tag == "PlayerCard")
         {
-            array = GameObject.FindGameObjectsWithTag("PlayerCard");
-        } else if (array == computerCards)
+            Debug.Log("You are hovering over a " + gameObject.tag + "card called" + gameObject + "with an isTopCardValue of " + isPlayerTopCard);
+        }
+        else if (gameObject.tag == "ComputerCard")
         {
-            array = GameObject.FindGameObjectsWithTag("ComputerCard");
+            Debug.Log("You are hovering over a " + gameObject.tag + "card called" + gameObject + "with an isTopCardValue of " + isComputerTopCard);
         }
         
+    }
+
+    /// <summary>
+    /// Gets the player's top card, which is used to determine playability
+    /// </summary>
+    public GameObject GetPlayerTopCard()
+    {
+
+        //initial setup
+        GameObject[] array = GameObject.FindGameObjectsWithTag("PlayerCard");
+
         GameObject topCard;
         float lowestZed;
         if (array.Length == 0)
@@ -120,9 +137,49 @@ public class CardBehavior : MonoBehaviour
 
         if (topCard == gameObject)
         {
-            isTopCard = true;
+            isPlayerTopCard = true;
         }
-        else isTopCard = false;
+        else isPlayerTopCard = false;
+
+        return topCard;
+    }
+    /// <summary>
+    /// Gets the computer's top card, which is used to determine playability
+    /// </summary>
+    public GameObject GetComputerTopCard()
+    {
+
+        //initial setup
+        GameObject[] array = GameObject.FindGameObjectsWithTag("ComputerCard");
+
+        GameObject topCard;
+        float lowestZed;
+        if (array.Length == 0)
+        {
+            return null;
+        }
+        else
+        {
+            topCard = array[0];
+            lowestZed = 0;
+        }
+
+        // find and return closest pickup
+        for (int i = 0; i < array.Length; i++)
+        {
+            float zpos = array[i].transform.position.z;
+            if (zpos < lowestZed)
+            {
+                topCard = array[i];
+                lowestZed = array[i].transform.position.z;
+            }
+        }
+
+        if (topCard == gameObject)
+        {
+            isComputerTopCard = true;
+        }
+        else isComputerTopCard = false;
 
         return topCard;
     }
