@@ -122,12 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06e30020c2f4a5458b5680b6b70187a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triviaMastery: 42
-  soulsBorneSkills: 4
-  drinkMixing: 54
-  gameCollection: 21
-  speedRunning: 2
-  polykilling: 36
+  stat0: 42
+  stat1: 4
+  stat2: 54
+  stat3: 21
+  stat4: 2
+  stat5: 36
   cardFront: {fileID: 21300000, guid: 41fe0ab86f5d65543805dc88383d2451, type: 3}
   cardBack: {fileID: 21300000, guid: 95f6ef2b82aa9b24790125367956d805, type: 3}
   isFaceUp: 0

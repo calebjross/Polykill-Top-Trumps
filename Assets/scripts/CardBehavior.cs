@@ -11,17 +11,17 @@ public class CardBehavior : MonoBehaviour
     //establish fields that will controlled via the inspector
     #region Fields
     [SerializeField]
-    public int triviaMastery;
+    public int stat0;
     [SerializeField]
-    public int soulsBorneSkills;
+    public int stat1;
     [SerializeField]
-    public int drinkMixing;
+    public int stat2;
     [SerializeField]
-    public int gameCollection;
+    public int stat3;
     [SerializeField]
-    public int speedRunning;
+    public int stat4;
     [SerializeField]
-    public int polykilling;
+    public int stat5;
     [SerializeField]
     Sprite cardFront;
     [SerializeField]
@@ -31,7 +31,7 @@ public class CardBehavior : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     // determines face up status
-    public bool isFaceUp = false;
+    public bool isFaceUp;
 
     // support for determining the top card
     GameManager gameManager;
@@ -53,7 +53,19 @@ public class CardBehavior : MonoBehaviour
         //establish card properties and state
         gameManager = Camera.main.GetComponent<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = cardBack;
+        isFaceUp = false;
+}
+
+    private void Start()
+    {
+        if (isFaceUp)
+        {
+            spriteRenderer.sprite = cardFront;
+        }
+        else if (!isFaceUp)
+        {
+            spriteRenderer.sprite = cardBack;
+        }
     }
 
     /// <summary>
@@ -61,10 +73,10 @@ public class CardBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseDown()
     {
-        if (isFaceUp && isPlayerTopCard)
+        if (!isFaceUp && isPlayerTopCard)
         {
-            Destroy(gameObject);
-        } else FlipCard();
+            FlipCard();
+        }
     }
 
     /// <summary>
@@ -90,17 +102,7 @@ public class CardBehavior : MonoBehaviour
     private void OnMouseOver()
     {
         GetPlayerTopCard();
-        GetComputerTopCard();
-        
-        if (gameObject.tag == "PlayerCard")
-        {
-            Debug.Log("You are hovering over a " + gameObject.tag + "card called" + gameObject + "with an isTopCardValue of " + isPlayerTopCard);
-        }
-        else if (gameObject.tag == "ComputerCard")
-        {
-            Debug.Log("You are hovering over a " + gameObject.tag + "card called" + gameObject + "with an isTopCardValue of " + isComputerTopCard);
-        }
-        
+        GetComputerTopCard();        
     }
 
     /// <summary>
@@ -182,11 +184,6 @@ public class CardBehavior : MonoBehaviour
         else isComputerTopCard = false;
 
         return topCard;
-    }
-
-    private void Update()
-    {
-        
     }
 
     #endregion
