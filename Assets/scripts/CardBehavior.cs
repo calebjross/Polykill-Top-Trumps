@@ -73,10 +73,7 @@ public class CardBehavior : MonoBehaviour
     /// </summary>
     private void OnMouseDown()
     {
-        if (!isFaceUp && isPlayerTopCard)
-        {
-            FlipCard();
-        }
+        FlipCard();
     }
 
     /// <summary>
