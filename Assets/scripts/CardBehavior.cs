@@ -34,8 +34,11 @@ public class CardBehavior : MonoBehaviour
     //will help set images on the top and bottom of card
     SpriteRenderer spriteRenderer;
 
-    // determines face up status
+    // determines card state
     public bool isFaceUp;
+    bool isFlipping;
+    float flipXValue = 1f;
+    bool isRebounding = false;
 
     // support for determining the top card
     GameManager gameManager;
@@ -58,6 +61,7 @@ public class CardBehavior : MonoBehaviour
         gameManager = Camera.main.GetComponent<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         isFaceUp = false;
+        isFlipping = false;
 }
 
     private void Start()
@@ -90,8 +94,38 @@ public class CardBehavior : MonoBehaviour
     {
         if (!isFaceUp)
         {
-            spriteRenderer.sprite = cardFront;
-            isFaceUp = true;
+            isFlipping = true;
+        }
+    }
+
+    private void Update()
+    {
+        //flips card
+        if (isFlipping)
+        {
+            if (!isRebounding)
+            {
+                flipXValue -= 0.05f;
+                transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                if (flipXValue <= 0)
+                {
+                    isRebounding = true;
+                }
+            }
+            if (isRebounding)
+            {
+                spriteRenderer.sprite = cardFront;
+                isFaceUp = true;
+                flipXValue += 0.05f;
+                transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                if (flipXValue >=1)
+                {
+                    isRebounding = false;
+                    flipXValue = 1;
+                    isFlipping = false;
+                    isFaceUp = true;
+                }
+            }
         }
     }
 
