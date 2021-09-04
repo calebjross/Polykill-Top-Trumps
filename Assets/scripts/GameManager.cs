@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
             cypos += 0.5f;
             czpos -= 0.1f;
         }
-
     }
 
     /// <summary>
@@ -84,9 +83,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-
-    }
     #endregion
 }

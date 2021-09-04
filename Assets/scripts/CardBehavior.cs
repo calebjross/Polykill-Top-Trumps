@@ -40,10 +40,6 @@ public class CardBehavior : MonoBehaviour
     GameObject[] playerCards;
     GameObject[] computerCards;
 
-    //sets up card count
-    public int playerCardCount;
-    public int computerCardCount;
-
     #endregion
 
     #region Properties
@@ -70,12 +66,6 @@ public class CardBehavior : MonoBehaviour
         {
             spriteRenderer.sprite = cardBack;
         }
-
-        //set initial count of cards for player and computer
-        playerCards = GameObject.FindGameObjectsWithTag("PlayerCard");
-        computerCards = GameObject.FindGameObjectsWithTag("ComputerCard");
-        playerCardCount = playerCards.Length;
-        computerCardCount = computerCards.Length;
     }
 
     /// <summary>
@@ -92,14 +82,14 @@ public class CardBehavior : MonoBehaviour
     /// <summary>
     /// Determines whether or not a player card can be flipped over
     /// </summary>
-    public void FlipCard()
+    private void FlipCard()
     {
-        if (!isFaceUp)
+        if (!isFaceUp && isPlayerTopCard)
         {
             spriteRenderer.sprite = cardFront;
             isFaceUp = true;
         }
-        else if (isFaceUp)
+        else if (!isFaceUp && !isPlayerTopCard)
         {
             spriteRenderer.sprite = cardBack;
             isFaceUp = false;
@@ -120,6 +110,7 @@ public class CardBehavior : MonoBehaviour
     /// </summary>
     public GameObject GetPlayerTopCard()
     {
+
         //initial setup
         GameObject[] array = GameObject.FindGameObjectsWithTag("PlayerCard");
 
@@ -159,6 +150,7 @@ public class CardBehavior : MonoBehaviour
     /// </summary>
     public GameObject GetComputerTopCard()
     {
+
         //initial setup
         GameObject[] array = GameObject.FindGameObjectsWithTag("ComputerCard");
 
@@ -193,49 +185,6 @@ public class CardBehavior : MonoBehaviour
 
         return topCard;
     }
-
-    /// <summary>
-    /// Called when a battle starts
-    /// </summary>
-    /// <param name="playerStat"></param>
-    /// <param name="computerStat"></param>
-    public void Battle(int playerStat, int computerStat)
-    {
-        //player wins
-        if (playerStat > computerStat)
-        {
-            playerCardCount += 1;
-            computerCardCount -= 1;
-            Debug.Log("Player Wins. Player has " + playerCardCount + " cards. Computer has " + computerCardCount + " cards.");
-        }
-        //computer wins
-        else if (playerStat < computerStat)
-        {
-            playerCardCount -= 1;
-            computerCardCount += 1;
-            Debug.Log("Computer Wins. Computer has " + computerCardCount + " cards. Player has " + playerCardCount + " cards.");
-        }
-        //draw
-        else if (playerStat == computerStat)
-        {
-            Debug.Log("Draw");
-        }
-        Destroy(gameObject);
-        //MoveCardToCompetitorPile();
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     #endregion
 }

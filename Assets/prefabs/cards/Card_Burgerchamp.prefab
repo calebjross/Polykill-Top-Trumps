@@ -263,8 +263,6 @@ MonoBehaviour:
   isFaceUp: 0
   isPlayerTopCard: 0
   isComputerTopCard: 0
-  playerCardCount: 0
-  computerCardCount: 0
 --- !u!1 &4213899961665897654
 GameObject:
   m_ObjectHideFlags: 0
