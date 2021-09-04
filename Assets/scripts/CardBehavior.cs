@@ -82,24 +82,19 @@ public class CardBehavior : MonoBehaviour
     /// <summary>
     /// Determines whether or not a player card can be flipped over
     /// </summary>
-    private void FlipCard()
+    public void FlipCard()
     {
-        if (!isFaceUp && isPlayerTopCard)
+        if (!isFaceUp)
         {
             spriteRenderer.sprite = cardFront;
             isFaceUp = true;
         }
-        else if (!isFaceUp && !isPlayerTopCard)
-        {
-            spriteRenderer.sprite = cardBack;
-            isFaceUp = false;
-        } 
     }
 
     /// <summary>
     /// Used prmiarly to send debug.log messages. MouseOver has no gameplay functionality
     /// </summary>
-    private void OnMouseOver()
+    public void OnMouseOver()
     {
         GetPlayerTopCard();
         GetComputerTopCard();        

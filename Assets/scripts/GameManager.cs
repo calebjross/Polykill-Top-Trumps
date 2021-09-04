@@ -83,5 +83,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Battle(int playerStat, int computerStat)
+    {
+        if (playerStat > computerStat)
+        {
+            //Debug.Log("Player Wins");
+        } else if (playerStat < computerStat)
+        {
+            //Debug.Log("Computer Wins");
+        }
+        else if (playerStat == computerStat)
+        {
+            //Debug.Log("Draw");
+        }
+    }
+
     #endregion
 }
