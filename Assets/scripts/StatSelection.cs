@@ -7,16 +7,16 @@ public class StatSelection : MonoBehaviour
     public int playerStat;
     public int computerStat;
     CardBehavior cardBehavior;
-    SpriteRenderer sprite;
-    GameManager gameManager;
+    SpriteRenderer spriteRenderer;
     GameObject computerTopCard;
 
     private void Start()
     {
         cardBehavior = GetComponentInParent<CardBehavior>();
-        sprite = GetComponent<SpriteRenderer>();
-        gameManager = Camera.main.GetComponent<GameManager>();
-        sprite.enabled = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = cardBehavior.selectorSprite;
+        spriteRenderer.enabled = false;
+        
     }
 
     public void OnMouseOver()
@@ -55,30 +55,24 @@ public class StatSelection : MonoBehaviour
                     playerStat = 0;
                     break;
             }
-            Debug.Log("Player " + gameObject + " of " + playerStat + " vs Computer " + computerTopCard + " of " + computerStat);
-            sprite.enabled = true;
+            //Debug.Log("Player " + gameObject + " of " + playerStat + " vs Computer " + computerTopCard + " of " + computerStat);
+            spriteRenderer.enabled = true;
         }
     }
 
     private void OnMouseExit()
     {
-        if (sprite.enabled == true)
+        if (spriteRenderer.enabled == true)
         {
-            sprite.enabled = false;
+            spriteRenderer.enabled = false;
         }
     }
     private void OnMouseDown()
     {
         if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
         {
-            gameManager.Battle(playerStat,computerStat);
+            cardBehavior.Battle(playerStat,computerStat);
             computerTopCard.GetComponent<CardBehavior>().FlipCard();
         }
-    }
-
-    private void MoveCardToCompetitorPile()
-    {
-        //code to move the losing card to the winner card pile after battle completion
-        //must add card to the bottom (highest z) of the pile and move each card of the pile up
     }
 }

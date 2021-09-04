@@ -260,6 +260,8 @@ MonoBehaviour:
   stat5: 25
   cardFront: {fileID: 21300000, guid: f406f21c2a9d2d9448a782debeebd28d, type: 3}
   cardBack: {fileID: 21300000, guid: 95f6ef2b82aa9b24790125367956d805, type: 3}
+  selectorSprite: {fileID: 21300000, guid: 678746e793121d049bd251dbc1328aa8, type: 3}
+  selectorSound: {fileID: 0}
   isFaceUp: 0
   isPlayerTopCard: 0
   isComputerTopCard: 0

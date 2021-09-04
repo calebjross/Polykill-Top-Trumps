@@ -26,6 +26,10 @@ public class CardBehavior : MonoBehaviour
     Sprite cardFront;
     [SerializeField]
     Sprite cardBack;
+    [SerializeField]
+    public Sprite selectorSprite;
+    [SerializeField]
+    AudioClip selectorSound;
 
     //will help set images on the top and bottom of card
     SpriteRenderer spriteRenderer;
@@ -181,5 +185,38 @@ public class CardBehavior : MonoBehaviour
         return topCard;
     }
 
+    /// <summary>
+    /// Initiates a battle between player and comp card based on the chosen stat
+    /// </summary>
+    /// <param name="playerStat"></param>
+    /// <param name="computerStat"></param>
+    public void Battle(int playerStat, int computerStat)
+    {
+        if (playerStat > computerStat)
+        {
+            gameManager.playerCardScore += 1;
+            gameManager.computerCardScore -= 1;
+            Debug.Log("Player Wins");
+        }
+        else if (playerStat < computerStat)
+        {
+            gameManager.playerCardScore -= 1;
+            gameManager.computerCardScore += 1;
+            Debug.Log("Computer Wins");
+        }
+        else if (playerStat == computerStat)
+        {
+            Debug.Log("Draw");
+        }
+        MoveCardToCompetitorPile();
+    }
+
+    private void MoveCardToCompetitorPile()
+    {
+        //code to move the losing card to the winner card pile after battle completion
+        //must add card to the bottom (highest z) of the pile and move each card of the pile up
+        Destroy(GetComputerTopCard(), 1);
+        Destroy(gameObject, 1);
+    }
     #endregion
 }

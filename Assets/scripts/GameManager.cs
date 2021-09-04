@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// 
@@ -11,8 +12,12 @@ public class GameManager : MonoBehaviour
     #region Fields
     [SerializeField]
     public GameObject[] playerCards = new GameObject[3];
-
     GameObject[] computerCards = new GameObject[3];
+
+    [SerializeField]
+    public Text playerText;
+    [SerializeField]
+    public Text computerText;
 
     // used to establish the first card position
     float pxpos; //player
@@ -24,6 +29,10 @@ public class GameManager : MonoBehaviour
 
     // used for Shuffle() method
     private GameObject tempGO;
+
+    // set card counts / scores
+    public int playerCardScore = 0;
+    public int computerCardScore = 0;
 
     #endregion
 
@@ -67,6 +76,8 @@ public class GameManager : MonoBehaviour
             cypos += 0.5f;
             czpos -= 0.1f;
         }
+        playerCardScore = playerCards.Length;
+        computerCardScore = computerCards.Length;
     }
 
     /// <summary>
@@ -83,19 +94,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Battle(int playerStat, int computerStat)
+    public void Update()
     {
-        if (playerStat > computerStat)
-        {
-            //Debug.Log("Player Wins");
-        } else if (playerStat < computerStat)
-        {
-            //Debug.Log("Computer Wins");
-        }
-        else if (playerStat == computerStat)
-        {
-            //Debug.Log("Draw");
-        }
+        playerText.text = "Player cards remaining: " + playerCardScore.ToString();
+        computerText.text = "Computer cards remaining: " + computerCardScore.ToString();
     }
 
     #endregion
