@@ -74,6 +74,9 @@ public class CardBehavior : MonoBehaviour
         {
             spriteRenderer.sprite = cardBack;
         }
+
+        GetPlayerTopCard();
+        GetComputerTopCard();
     }
 
     /// <summary>
@@ -230,17 +233,17 @@ public class CardBehavior : MonoBehaviour
         {
             gameManager.playerCardScore += 1;
             gameManager.computerCardScore -= 1;
-            Debug.Log("Player Wins");
+            //Debug.Log("Player Wins");
         }
         else if (playerStat < computerStat)
         {
             gameManager.playerCardScore -= 1;
             gameManager.computerCardScore += 1;
-            Debug.Log("Computer Wins");
+            //Debug.Log("Computer Wins");
         }
         else if (playerStat == computerStat)
         {
-            Debug.Log("Draw");
+            //Debug.Log("Draw");
         }
         MoveCardToCompetitorPile();
     }

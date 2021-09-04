@@ -243,10 +243,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCards:
   - {fileID: 3893467100384277409, guid: 12410d5053461784f839db93d6ad6823, type: 3}
-  - {fileID: 2930113995397050710, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
   - {fileID: 2809665099587049288, guid: 6764d3afea43fd04887fbceef3a3476f, type: 3}
+  - {fileID: 2930113995397050710, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
   playerText: {fileID: 562402235}
   computerText: {fileID: 183504127}
+  playerCardScore: 0
+  computerCardScore: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

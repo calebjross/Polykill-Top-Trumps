@@ -7,23 +7,24 @@ public class StatSelection : MonoBehaviour
     public int playerStat;
     public int computerStat;
     CardBehavior cardBehavior;
-    SpriteRenderer spriteRenderer;
+    Renderer spriteRenderer;
     GameObject computerTopCard;
 
     private void Start()
     {
         cardBehavior = GetComponentInParent<CardBehavior>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = cardBehavior.selectorSprite;
+        spriteRenderer = GetComponent<Renderer>();
         spriteRenderer.enabled = false;
         
     }
 
     public void OnMouseOver()
     {
+        Debug.Log("OnMouseOver is active");
         //determines which stat value to select from the player card
         if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
         {
+            spriteRenderer.enabled = true;
             computerTopCard = cardBehavior.GetComputerTopCard();
             switch (gameObject.name)
             {
@@ -56,16 +57,13 @@ public class StatSelection : MonoBehaviour
                     break;
             }
             //Debug.Log("Player " + gameObject + " of " + playerStat + " vs Computer " + computerTopCard + " of " + computerStat);
-            spriteRenderer.enabled = true;
         }
     }
 
     private void OnMouseExit()
     {
-        if (spriteRenderer.enabled == true)
-        {
-            spriteRenderer.enabled = false;
-        }
+        Debug.Log("OnMouseOver is INactive");
+        spriteRenderer.enabled = false;
     }
     private void OnMouseDown()
     {
