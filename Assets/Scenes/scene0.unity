@@ -246,7 +246,6 @@ MonoBehaviour:
   - {fileID: 167115935799362636, guid: 852e49c01304f5d4d8fc8d23d4ba763c, type: 3}
   - {fileID: 1573385666854799568, guid: 9d7e682c613878d4cb4ff24792c7e082, type: 3}
   - {fileID: 3389994428577396118, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
-  - {fileID: 5492474409652888678, guid: 11e9316a18529e7408d323eb921fa086, type: 3}
   playerText: {fileID: 562402235}
   computerText: {fileID: 183504127}
   playerCardScore: 0

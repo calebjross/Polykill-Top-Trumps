@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
 {
     #region Fields
     [SerializeField]
-    public GameObject[] playerCards = new GameObject[5];
-    GameObject[] computerCards = new GameObject[5];
+    public GameObject[] playerCards = new GameObject[2];
+    GameObject[] computerCards = new GameObject[2];
 
     [SerializeField]
     public Text playerText;
@@ -49,12 +49,14 @@ public class GameManager : MonoBehaviour
         //make computerCards match playerCards
         computerCards = playerCards;
 
-        //player cards behavior
+        // shuffle original array before dealing out to player and computer
         Shuffle(playerCards);
+
+        //player cards behavior
         pxpos = 6f;
         pypos = -1f;
         pzpos = 0f;
-        for (int i = 0; i < playerCards.Length; i++)
+        for (int i = 0; i < playerCards.Length; i += 2)
         {
             playerCards[i].tag = "PlayerCard";
             Instantiate(playerCards[i], new Vector3(pxpos, pypos, pzpos), Quaternion.identity);
@@ -64,11 +66,10 @@ public class GameManager : MonoBehaviour
         }
 
         //computer cards behavior
-        Shuffle(computerCards);
         cxpos = -6f;
         cypos = -1f;
         czpos = 0f;
-        for (int i = 0; i < computerCards.Length; i++)
+        for (int i = 1; i < computerCards.Length; i += 2)
         {
             computerCards[i].tag = "ComputerCard";
             Instantiate(computerCards[i], new Vector3(cxpos, cypos, czpos), Quaternion.identity);
@@ -76,8 +77,8 @@ public class GameManager : MonoBehaviour
             cypos += 0.2f;
             czpos -= 0.1f;
         }
-        playerCardScore = playerCards.Length;
-        computerCardScore = computerCards.Length;
+        playerCardScore = playerCards.Length/2;
+        computerCardScore = computerCards.Length/2;
     }
 
     /// <summary>

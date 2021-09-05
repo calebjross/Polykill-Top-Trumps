@@ -46,8 +46,6 @@ public class CardBehavior : MonoBehaviour
     GameManager gameManager;
     public bool isPlayerTopCard;
     public bool isComputerTopCard;
-    GameObject[] playerCards;
-    GameObject[] computerCards;
 
     #endregion
 
