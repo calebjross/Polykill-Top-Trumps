@@ -40,6 +40,7 @@ public class CardBehavior : MonoBehaviour
     float flipXValue = 1f;
     bool isRebounding = false;
     BoxCollider2D bc2d;
+    public bool isBattling;
 
     // support for determining the top card
     GameManager gameManager;
@@ -64,6 +65,7 @@ public class CardBehavior : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         isFaceUp = false;
         isFlipping = false;
+        isBattling = false;
 }
 
     private void Start()
@@ -90,7 +92,13 @@ public class CardBehavior : MonoBehaviour
     {
         if (!isFaceUp && isPlayerTopCard)
         {
+            isBattling = true;
             FlipCard();
+            GameObject[] StatBars = GameObject.FindGameObjectsWithTag("StatBar");
+            for (int i = 0; i < StatBars.Length; i++)
+            {
+                StatBars[i].GetComponent<BoxCollider2D>().enabled = true;
+            }
         }
     }
 
@@ -103,36 +111,74 @@ public class CardBehavior : MonoBehaviour
         {
             bc2d.enabled = true;
             isFlipping = true;
+            bc2d.isTrigger = true;
+
+        }
+        if (isFaceUp)
+        {
+            bc2d.enabled = false;
+            isFlipping = true;
+            bc2d.isTrigger = false;
         }
     }
 
     private void Update()
     {
         //flips card
-        if (isFlipping)
-        {
-            if (!isRebounding)
+        if (!isFaceUp) {
+            if (isFlipping)
             {
-                flipXValue -= 0.05f;
-                transform.localScale = new Vector2(flipXValue, transform.localScale.y);
-                if (flipXValue <= 0)
+                if (!isRebounding)
                 {
-                    isRebounding = true;
+                    flipXValue -= 0.05f;
+                    transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                    if (flipXValue <= 0)
+                    {
+                        isRebounding = true;
+                    }
+                }
+                if (isRebounding)
+                {
+                    spriteRenderer.sprite = cardFront;
+                    flipXValue += 0.05f;
+                    transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                    if (flipXValue >= 1)
+                    {
+                        isRebounding = false;
+                        flipXValue = 1;
+                        isFlipping = false;
+                        isFaceUp = true;
+                        bc2d.enabled = false;
+                    }
                 }
             }
-            if (isRebounding)
+        } 
+        if (isFaceUp)
+        {
+            if (isFlipping)
             {
-                spriteRenderer.sprite = cardFront;
-                isFaceUp = true;
-                flipXValue += 0.05f;
-                transform.localScale = new Vector2(flipXValue, transform.localScale.y);
-                if (flipXValue >=1)
+                if (!isRebounding)
                 {
-                    isRebounding = false;
-                    flipXValue = 1;
-                    isFlipping = false;
-                    isFaceUp = true;
-                    bc2d.enabled = false;
+                    flipXValue -= 0.05f;
+                    transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                    if (flipXValue <= 0)
+                    {
+                        isRebounding = true;
+                    }
+                }
+                if (isRebounding)
+                {
+                    spriteRenderer.sprite = cardBack;
+                    flipXValue += 0.05f;
+                    transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                    if (flipXValue >= 1)
+                    {
+                        isRebounding = false;
+                        flipXValue = 1;
+                        isFlipping = false;
+                        isFaceUp = false;
+                        bc2d.enabled = true;
+                    }
                 }
             }
         }
@@ -258,6 +304,7 @@ public class CardBehavior : MonoBehaviour
     {
         //code to move the losing card to the winner card pile after battle completion
         //must add card to the bottom (highest z) of the pile and move each card of the pile up
+        bc2d.isTrigger = false;
         Destroy(GetComputerTopCard(), 1);
         Destroy(gameObject, 1);
     }

@@ -19,7 +19,6 @@ public class StatSelection : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        Debug.Log("OnMouseOver is active");
         //determines which stat value to select from the player card
         if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
         {
@@ -61,15 +60,28 @@ public class StatSelection : MonoBehaviour
 
     private void OnMouseExit()
     {
-        Debug.Log("OnMouseOver is INactive");
         spriteRenderer.enabled = false;
     }
     private void OnMouseDown()
     {
-        if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
+        GameObject[] StatBars = GameObject.FindGameObjectsWithTag("StatBar");
+        for (int i = 0; i < StatBars.Length; i++)
+        {
+            StatBars[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+
+        if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard && cardBehavior.isBattling)
         {
             cardBehavior.Battle(playerStat,computerStat);
-            computerTopCard.GetComponent<CardBehavior>().FlipCard();
+            
+            //spriteRenderer.enabled = false;
+            if (computerTopCard.GetComponent<CardBehavior>().isBattling == false)
+            {
+                computerTopCard.GetComponent<CardBehavior>().FlipCard();
+                computerTopCard.GetComponent<CardBehavior>().isBattling = true;
+            }
+            
+            
         }
     }
 }
