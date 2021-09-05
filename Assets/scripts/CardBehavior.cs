@@ -39,6 +39,7 @@ public class CardBehavior : MonoBehaviour
     bool isFlipping;
     float flipXValue = 1f;
     bool isRebounding = false;
+    BoxCollider2D bc2d;
 
     // support for determining the top card
     GameManager gameManager;
@@ -58,6 +59,7 @@ public class CardBehavior : MonoBehaviour
     private void Awake()
     {
         //establish card properties and state
+        bc2d = GetComponent<BoxCollider2D>();
         gameManager = Camera.main.GetComponent<GameManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         isFaceUp = false;
@@ -68,10 +70,12 @@ public class CardBehavior : MonoBehaviour
     {
         if (isFaceUp)
         {
+            bc2d.enabled = false;
             spriteRenderer.sprite = cardFront;
         }
         else if (!isFaceUp)
         {
+            bc2d.enabled = true;
             spriteRenderer.sprite = cardBack;
         }
 
@@ -97,6 +101,7 @@ public class CardBehavior : MonoBehaviour
     {
         if (!isFaceUp)
         {
+            bc2d.enabled = true;
             isFlipping = true;
         }
     }
@@ -127,6 +132,7 @@ public class CardBehavior : MonoBehaviour
                     flipXValue = 1;
                     isFlipping = false;
                     isFaceUp = true;
+                    bc2d.enabled = false;
                 }
             }
         }

@@ -58,8 +58,8 @@ public class GameManager : MonoBehaviour
         {
             playerCards[i].tag = "PlayerCard";
             Instantiate(playerCards[i], new Vector3(pxpos, pypos, pzpos), Quaternion.identity);
-            pxpos -= 0.5f;
-            pypos += 0.5f;
+            pxpos -= 0.2f;
+            pypos += 0.2f;
             pzpos -= 0.1f;
         }
 
@@ -72,8 +72,8 @@ public class GameManager : MonoBehaviour
         {
             computerCards[i].tag = "ComputerCard";
             Instantiate(computerCards[i], new Vector3(cxpos, cypos, czpos), Quaternion.identity);
-            cxpos += 0.5f;
-            cypos += 0.5f;
+            cxpos += 0.2f;
+            cypos += 0.2f;
             czpos -= 0.1f;
         }
         playerCardScore = playerCards.Length;

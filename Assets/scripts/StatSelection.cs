@@ -15,10 +15,9 @@ public class StatSelection : MonoBehaviour
         cardBehavior = GetComponentInParent<CardBehavior>();
         spriteRenderer = GetComponent<Renderer>();
         spriteRenderer.enabled = false;
-        
     }
 
-    public void OnMouseOver()
+    public void OnMouseEnter()
     {
         Debug.Log("OnMouseOver is active");
         //determines which stat value to select from the player card
