@@ -202,36 +202,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183504125}
   m_CullTransparentMesh: 1
---- !u!1 &192931078
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 192931079}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &192931079
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 192931078}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8308675, y: -0.5348941, z: -2.2014816}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,15 +243,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCards:
   - {fileID: 3893467100384277409, guid: 12410d5053461784f839db93d6ad6823, type: 3}
-  - {fileID: 2930113995397050710, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
-  - {fileID: 2930113995397050710, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
-  - {fileID: 2809665099587049288, guid: 6764d3afea43fd04887fbceef3a3476f, type: 3}
-  - {fileID: 2930113995397050710, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
-  - {fileID: 2809665099587049288, guid: 6764d3afea43fd04887fbceef3a3476f, type: 3}
-  - {fileID: 3893467100384277409, guid: 12410d5053461784f839db93d6ad6823, type: 3}
-  - {fileID: 3893467100384277409, guid: 12410d5053461784f839db93d6ad6823, type: 3}
-  - {fileID: 2930113995397050710, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
-  - {fileID: 2809665099587049288, guid: 6764d3afea43fd04887fbceef3a3476f, type: 3}
+  - {fileID: 167115935799362636, guid: 852e49c01304f5d4d8fc8d23d4ba763c, type: 3}
+  - {fileID: 1573385666854799568, guid: 9d7e682c613878d4cb4ff24792c7e082, type: 3}
+  - {fileID: 3389994428577396118, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
+  - {fileID: 5492474409652888678, guid: 11e9316a18529e7408d323eb921fa086, type: 3}
   playerText: {fileID: 562402235}
   computerText: {fileID: 183504127}
   playerCardScore: 0

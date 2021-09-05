@@ -203,7 +203,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f406f21c2a9d2d9448a782debeebd28d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 45f3a7f2bb788da42aee04c2ef573883, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -252,13 +252,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06e30020c2f4a5458b5680b6b70187a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat0: 93
-  stat1: 52
-  stat2: 19
-  stat3: 82
-  stat4: 11
-  stat5: 25
-  cardFront: {fileID: 21300000, guid: f406f21c2a9d2d9448a782debeebd28d, type: 3}
+  stat0: 43
+  stat1: 13
+  stat2: 17
+  stat3: 6
+  stat4: 21
+  stat5: 21
+  cardFront: {fileID: 21300000, guid: 45f3a7f2bb788da42aee04c2ef573883, type: 3}
   cardBack: {fileID: 21300000, guid: 95f6ef2b82aa9b24790125367956d805, type: 3}
   selectorSprite: {fileID: 21300000, guid: 678746e793121d049bd251dbc1328aa8, type: 3}
   selectorSound: {fileID: 0}

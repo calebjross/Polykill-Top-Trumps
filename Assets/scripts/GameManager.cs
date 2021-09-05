@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
 {
     #region Fields
     [SerializeField]
-    public GameObject[] playerCards = new GameObject[3];
-    GameObject[] computerCards = new GameObject[3];
+    public GameObject[] playerCards = new GameObject[5];
+    GameObject[] computerCards = new GameObject[5];
 
     [SerializeField]
     public Text playerText;
