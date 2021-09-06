@@ -41,6 +41,7 @@ public class CardBehavior : MonoBehaviour
     bool isRebounding = false;
     BoxCollider2D bc2d;
     public bool isBattling;
+    public string winner;
 
     // support for determining the top card
     GameManager gameManager;
@@ -122,6 +123,10 @@ public class CardBehavior : MonoBehaviour
 
     private void Update()
     {
+        //reset the top cards in prep for the next round
+        GetPlayerTopCard();
+        GetComputerTopCard();
+
         //flips card
         if (!isFaceUp) {
             if (isFlipping)
@@ -187,8 +192,7 @@ public class CardBehavior : MonoBehaviour
     /// </summary>
     public void OnMouseOver()
     {
-        GetPlayerTopCard();
-        GetComputerTopCard();        
+        
     }
 
     /// <summary>
@@ -279,27 +283,36 @@ public class CardBehavior : MonoBehaviour
     /// <param name="computerStat"></param>
     public void Battle(int playerStat, int computerStat)
     {
+        winner = null;
         if (playerStat > computerStat)
         {
+            winner = "player";
+            GameObject[] playerCardsArray = GameObject.FindGameObjectsWithTag("PlayerCard");
+            for (int i = 0; i< playerCardsArray.Length; i++)
+            {
+                playerCardsArray[i].transform.position = new Vector3(playerCardsArray[i].transform.position.x - 0.4f,
+                    playerCardsArray[i].transform.position.y + 0.4f, playerCardsArray[i].transform.position.z - 0.2f);
+            }
             gameManager.playerCardScore += 1;
             gameManager.computerCardScore -= 1;
-            //Debug.Log("Player Wins");
         }
         else if (playerStat < computerStat)
         {
+            winner = "computer";
+            GameObject[] computerCardsArray = GameObject.FindGameObjectsWithTag("ComputerCard");
+            for (int i = 0; i < computerCardsArray.Length; i++)
+            {
+                computerCardsArray[i].transform.position = new Vector3(computerCardsArray[i].transform.position.x + 0.4f,
+                    computerCardsArray[i].transform.position.y + 0.4f, computerCardsArray[i].transform.position.z - 0.2f);
+            }
             gameManager.playerCardScore -= 1;
             gameManager.computerCardScore += 1;
-            //Debug.Log("Computer Wins");
-        }
-        else if (playerStat == computerStat)
-        {
-            //Debug.Log("Draw");
         }
 
-        MoveCardToCompetitorPile();
+        MoveCardToCompetitorPile(winner);
     }
 
-    private void MoveCardToCompetitorPile()
+    private void MoveCardToCompetitorPile(string winner)
     {
         GameObject tempComputerTopCard = GetComputerTopCard();
 
@@ -308,10 +321,38 @@ public class CardBehavior : MonoBehaviour
         // 3. move all existing cards "to the winning pile" * the count of cards that are moving (to make room for the moved cards)
         // 4. Add the moved cards to the new pile starting at the original positions (see Start() of GameManager.cs)
         // 5. The destroy the two top cards. Be sure this destory still works after having moved cards up
-
+        
         bc2d.isTrigger = false;
-        Destroy(tempComputerTopCard, 1);
-        Destroy(gameObject, 1);
+
+        switch (winner)
+        {
+            case "player":
+                tempComputerTopCard.transform.position = new Vector3(6f, -1f, 0f);
+                transform.position = new Vector3(5.8f, -0.8f, -0.1f);
+                tempComputerTopCard.tag = "PlayerCard";
+                gameObject.tag = "PlayerCard";
+                break;
+            case "computer":
+                transform.position = new Vector3(-6f, -1f, -0f);
+                tempComputerTopCard.transform.position = new Vector3(-5.8f, -0.8f, -0.1f);
+                tempComputerTopCard.tag = "ComputerCard";
+                gameObject.tag = "ComputerCard";
+                break;
+        }
+
+        //flip both cards over to face down
+        tempComputerTopCard.GetComponent<CardBehavior>().FlipCard();
+        gameObject.GetComponent<CardBehavior>().FlipCard();
+
+        //set isBattling to false
+        tempComputerTopCard.GetComponent<CardBehavior>().isBattling = false;
+        gameObject.GetComponent<CardBehavior>().isBattling = false;
+        
+        //reset all TopCard values to false
+        tempComputerTopCard.GetComponent<CardBehavior>().isComputerTopCard = false;
+        gameObject.GetComponent<CardBehavior>().isComputerTopCard = false;
+        tempComputerTopCard.GetComponent<CardBehavior>().isPlayerTopCard = false;
+        gameObject.GetComponent<CardBehavior>().isPlayerTopCard = false;
     }
     #endregion
 }

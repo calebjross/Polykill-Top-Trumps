@@ -54,7 +54,6 @@ public class StatSelection : MonoBehaviour
                     playerStat = 0;
                     break;
             }
-            //Debug.Log("Player " + gameObject + " of " + playerStat + " vs Computer " + computerTopCard + " of " + computerStat);
         }
     }
 
@@ -74,7 +73,7 @@ public class StatSelection : MonoBehaviour
         {
             cardBehavior.Battle(playerStat,computerStat);
             
-            //spriteRenderer.enabled = false;
+            spriteRenderer.enabled = false;
             if (computerTopCard.GetComponent<CardBehavior>().isBattling == false)
             {
                 computerTopCard.GetComponent<CardBehavior>().FlipCard();
