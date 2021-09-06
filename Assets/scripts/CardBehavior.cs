@@ -295,15 +295,22 @@ public class CardBehavior : MonoBehaviour
         {
             //Debug.Log("Draw");
         }
+
         MoveCardToCompetitorPile();
     }
 
     private void MoveCardToCompetitorPile()
     {
-        //code to move the losing card to the winner card pile after battle completion
-        //must add card to the bottom (highest z) of the pile and move each card of the pile up
+        GameObject tempComputerTopCard = GetComputerTopCard();
+
+        // 1. Count how many cards are to be moved (should always be 2, right?)
+        // 2. determine which pile to move the cards to (computer or player)
+        // 3. move all existing cards "to the winning pile" * the count of cards that are moving (to make room for the moved cards)
+        // 4. Add the moved cards to the new pile starting at the original positions (see Start() of GameManager.cs)
+        // 5. The destroy the two top cards. Be sure this destory still works after having moved cards up
+
         bc2d.isTrigger = false;
-        Destroy(GetComputerTopCard(), 1);
+        Destroy(tempComputerTopCard, 1);
         Destroy(gameObject, 1);
     }
     #endregion
