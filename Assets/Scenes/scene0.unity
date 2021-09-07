@@ -242,20 +242,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCards:
-  - {fileID: 1573385666854799568, guid: 9d7e682c613878d4cb4ff24792c7e082, type: 3}
-  - {fileID: 167115935799362636, guid: 852e49c01304f5d4d8fc8d23d4ba763c, type: 3}
-  - {fileID: 3893467100384277409, guid: 12410d5053461784f839db93d6ad6823, type: 3}
-  - {fileID: 3389994428577396118, guid: 4e5458ed5b7f3c04e84f64376192eff4, type: 3}
-  - {fileID: 5492474409652888678, guid: 11e9316a18529e7408d323eb921fa086, type: 3}
-  - {fileID: 7891162459416176387, guid: 4051cd40253950741a0a41deee521a6f, type: 3}
-  - {fileID: 7743184027219047129, guid: e9e379b61fb1e8b4a9c2d6206685631e, type: 3}
-  - {fileID: 5781006714405993045, guid: 5ca5da8d165a2dc4bbdac5d18ffaf279, type: 3}
-  - {fileID: 3647311780804474685, guid: 15e70cc0653c88247a9c98b90d0ffc45, type: 3}
-  - {fileID: 846162353567535706, guid: a2b1f887a554b4447ae6bbbf694c6461, type: 3}
+  - {fileID: 738889777201735792, guid: e7777c49d57b3894494a4f35c841cc8f, type: 3}
+  - {fileID: 5395627429235394379, guid: 812228e36b7f67a4d8e41db76b9152d1, type: 3}
+  - {fileID: 1032640586824885250, guid: 088e6a8e28387834594eb8a51d3480b9, type: 3}
+  - {fileID: 4356153502194069860, guid: de9b9216f9d3d0e43b5e4649c044eb1f, type: 3}
+  - {fileID: 357977837774987664, guid: b507864a561523442852664be9ee8646, type: 3}
+  - {fileID: 7780822197246406282, guid: 31bb098e398ef744e87fe517f646800f, type: 3}
+  - {fileID: 447080399638495224, guid: c36c65cfa6e827e42aee6452c57316c9, type: 3}
+  - {fileID: 7649115371975554153, guid: 6c3bcf7043e30434db57cbb4750e3a4a, type: 3}
+  - {fileID: 2998754914782382192, guid: 59fb9f7f33cb44d4f9459a2aafed22ce, type: 3}
+  - {fileID: 503809877403652384, guid: 3c15087ffeef9a04b90f2bac5d363db8, type: 3}
   playerText: {fileID: 562402235}
   computerText: {fileID: 183504127}
   playerCardScore: 0
   computerCardScore: 0
+  isBattling: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

@@ -23,9 +23,13 @@ public class GameManager : MonoBehaviour
     float pxpos; //player
     float pypos; //player
     float pzpos; //player
+    float cardMoveSpeed = 0.3f;
+    float pxpos_final; // player final x position
     float cxpos; //computer
     float cypos; //computer
     float czpos; //computer
+    float cxpos_final; // computer final x position
+    bool isDealing = true;
 
     // used for Shuffle() method
     private GameObject tempGO;
@@ -60,7 +64,7 @@ public class GameManager : MonoBehaviour
 
         //player cards behavior
         pxpos = 6f;
-        pypos = -1f;
+        pypos = -1.8f;
         pzpos = 0f;
         for (int i = 0; i < playerCards.Length; i += 2)
         {
@@ -73,7 +77,7 @@ public class GameManager : MonoBehaviour
 
         //computer cards behavior
         cxpos = -6f;
-        cypos = -1f;
+        cypos = -1.8f;
         czpos = 0f;
         for (int i = 1; i < computerCards.Length; i += 2)
         {
@@ -103,6 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
+
         playerText.text = "Player cards remaining: " + playerCardScore.ToString();
         computerText.text = "Computer cards remaining: " + computerCardScore.ToString();
     }

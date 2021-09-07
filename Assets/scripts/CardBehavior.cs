@@ -37,7 +37,9 @@ public class CardBehavior : MonoBehaviour
     // determines card state
     public bool isFaceUp;
     bool isFlipping;
-    float flipXValue = 1f;
+    float flipXValue = 1.0f;
+    [SerializeField]
+    float flipXSpeed;
     bool isRebounding = false;
     BoxCollider2D bc2d;
     public string winner;
@@ -72,7 +74,8 @@ public class CardBehavior : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         isFaceUp = false;
         isFlipping = false;
-}
+        flipXSpeed = 0.2f;
+    }
 
     private void Start()
     {
@@ -174,7 +177,7 @@ public class CardBehavior : MonoBehaviour
             {
                 if (!isRebounding)
                 {
-                    flipXValue -= 0.05f;
+                    flipXValue -= flipXSpeed * (Time.deltaTime * 60);
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
                     if (flipXValue <= 0)
                     {
@@ -184,7 +187,7 @@ public class CardBehavior : MonoBehaviour
                 if (isRebounding)
                 {
                     spriteRenderer.sprite = cardFront;
-                    flipXValue += 0.05f;
+                    flipXValue += flipXSpeed * (Time.deltaTime * 60);
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
                     if (flipXValue >= 1)
                     {
@@ -203,7 +206,7 @@ public class CardBehavior : MonoBehaviour
             {
                 if (!isRebounding)
                 {
-                    flipXValue -= 0.05f;
+                    flipXValue -= flipXSpeed * (Time.deltaTime * 60);
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
                     if (flipXValue <= 0)
                     {
@@ -213,7 +216,7 @@ public class CardBehavior : MonoBehaviour
                 if (isRebounding)
                 {
                     spriteRenderer.sprite = cardBack;
-                    flipXValue += 0.05f;
+                    flipXValue += flipXSpeed * (Time.deltaTime * 60);
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
                     if (flipXValue >= 1)
                     {
@@ -276,8 +279,8 @@ public class CardBehavior : MonoBehaviour
                         playerCardsArray[i].transform.position.y + 0.4f, playerCardsArray[i].transform.position.z - 0.2f);
                 }
 
-                computerTopCard.transform.position = new Vector3(6f, -1f, 0f);
-                playerTopCard.transform.position = new Vector3(5.8f, -0.8f, -0.1f);
+                computerTopCard.transform.position = new Vector3(6f, -1.8f, 0f);
+                playerTopCard.transform.position = new Vector3(5.8f, -1.6f, -0.1f);
                 computerTopCard.tag = "PlayerCard";
                 playerTopCard.tag = "PlayerCard";
                 break;
@@ -291,8 +294,8 @@ public class CardBehavior : MonoBehaviour
                         computerCardsArray[i].transform.position.y + 0.4f, computerCardsArray[i].transform.position.z - 0.2f);
                 }
 
-                playerTopCard.transform.position = new Vector3(-6f, -1f, -0f);
-                computerTopCard.transform.position = new Vector3(-5.8f, -0.8f, -0.1f);
+                playerTopCard.transform.position = new Vector3(-6f, -1.8f, -0f);
+                computerTopCard.transform.position = new Vector3(-5.8f, -1.6f, -0.1f);
                 computerTopCard.tag = "ComputerCard";
                 playerTopCard.tag = "ComputerCard";
                 break;
