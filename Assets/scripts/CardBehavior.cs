@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Provides the functionality of the card
@@ -143,7 +144,7 @@ public class CardBehavior : MonoBehaviour
             else bc2d.enabled = true;
         }
 
-        //battle timer
+        //battle timer - allows time for the cards to flip
         if (battleTimerActive)
         {
             targetTime -= Time.deltaTime;
@@ -158,7 +159,7 @@ public class CardBehavior : MonoBehaviour
                 
             }
         }
-        //post battle flip timer
+        //post battle flip timer - allows time for the player to see the flipped cards before they go into the winner's deck
         if (flipTimerActive)
         {
             flipTargetTime -= Time.deltaTime;
@@ -304,6 +305,9 @@ public class CardBehavior : MonoBehaviour
         //set winner to null
         computerTopCard.GetComponent<CardBehavior>().winner = null;
         playerTopCard.GetComponent<CardBehavior>().winner = null;
+
+        //reset player stat UI
+        gameManager.ResetChosenStats();
     }
 
 

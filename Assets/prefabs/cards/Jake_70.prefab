@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 98033931721459263}
   m_Layer: 3
   m_Name: Jake_70
-  m_TagString: PlayerCard
+  m_TagString: ComputerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

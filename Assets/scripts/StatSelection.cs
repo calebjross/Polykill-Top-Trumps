@@ -10,11 +10,13 @@ public class StatSelection : MonoBehaviour
     Renderer spriteRenderer;
     GameObject computerTopCard;
     BoxCollider2D bc2d;
+    GameManager gameManager;
 
     private void Start()
     {
         cardBehavior = GetComponentInParent<CardBehavior>();
         spriteRenderer = GetComponent<Renderer>();
+        gameManager = Camera.main.GetComponent<GameManager>();
         spriteRenderer.enabled = false;
     }
 
@@ -80,6 +82,7 @@ public class StatSelection : MonoBehaviour
         if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
         {
             cardBehavior.Battle(playerStat, computerStat);
+            gameManager.DisplayChosenStats(playerStat, computerStat);
         }
     }
 }

@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     public Text playerText;
     [SerializeField]
     public Text computerText;
+    [SerializeField]
+    public Text playerStatText;
+    [SerializeField]
+    public Text computerStatText;
 
     // used to establish the first card position
     float pxpos; //player
@@ -105,9 +109,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shows the battle stats on screen
+    /// </summary>
+    /// <param name="playerStat"></param>
+    /// <param name="computerStat"></param>
+    public void DisplayChosenStats(int playerStat, int computerStat)
+    {
+        playerStatText.text = playerStat.ToString();
+        computerStatText.text = computerStat.ToString();
+    }
+
+    public void ResetChosenStats()
+    {
+        playerStatText.text = "";
+        computerStatText.text = "";
+    }
+
     public void Update()
     {
-
         playerText.text = "Player cards remaining: " + playerCardScore.ToString();
         computerText.text = "Computer cards remaining: " + computerCardScore.ToString();
     }
