@@ -40,13 +40,21 @@ public class CardBehavior : MonoBehaviour
     float flipXValue = 1f;
     bool isRebounding = false;
     BoxCollider2D bc2d;
-    public bool isBattling;
     public string winner;
 
     // support for determining the top card
     GameManager gameManager;
     public bool isPlayerTopCard;
     public bool isComputerTopCard;
+    GameObject playerTopCard;
+    GameObject computerTopCard;
+
+    //creates time for card flips before battle ends
+    public float targetTime;
+    public bool battleTimerActive;
+    // creates time for card flips after battle ends
+    public float flipTargetTime;
+    public bool flipTimerActive;
 
     #endregion
 
@@ -64,7 +72,6 @@ public class CardBehavior : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         isFaceUp = false;
         isFlipping = false;
-        isBattling = false;
 }
 
     private void Start()
@@ -74,14 +81,11 @@ public class CardBehavior : MonoBehaviour
             bc2d.enabled = false;
             spriteRenderer.sprite = cardFront;
         }
-        else if (!isFaceUp)
+        if (!isFaceUp)
         {
             bc2d.enabled = true;
             spriteRenderer.sprite = cardBack;
         }
-
-        GetPlayerTopCard();
-        GetComputerTopCard();
     }
 
     /// <summary>
@@ -91,7 +95,6 @@ public class CardBehavior : MonoBehaviour
     {
         if (!isFaceUp && isPlayerTopCard)
         {
-            isBattling = true;
             FlipCard();
             GameObject[] StatBars = GameObject.FindGameObjectsWithTag("StatBar");
             for (int i = 0; i < StatBars.Length; i++)
@@ -124,11 +127,49 @@ public class CardBehavior : MonoBehaviour
     private void Update()
     {
         //reset the top cards in prep for the next round
-        GetPlayerTopCard();
-        GetComputerTopCard();
+        playerTopCard = GetPlayerTopCard();
+        computerTopCard = GetComputerTopCard();
+
+        if (bc2d != null)
+        {
+            //tracks clickability of box collider
+            if (isFaceUp == true)
+            {
+                bc2d.enabled = false;
+            }
+            else bc2d.enabled = true;
+        }
+
+        //battle timer
+        if (battleTimerActive)
+        {
+            targetTime -= Time.deltaTime;
+            if (targetTime <= 0.0f)
+            {
+                battleTimerActive = false;
+                flipTimerActive = true;
+                flipTargetTime = 0.2f;
+                //flip both cards after determining winner
+                computerTopCard.GetComponent<CardBehavior>().FlipCard();
+                playerTopCard.GetComponent<CardBehavior>().FlipCard();
+                
+            }
+        }
+        //post battle flip timer
+        if (flipTimerActive)
+        {
+            flipTargetTime -= Time.deltaTime;
+            if (flipTargetTime <= 0.0f)
+            {
+                flipTimerActive = false;
+                //move cards to competitor pile
+                MoveCardToCompetitorPile(winner);
+            }
+        }
 
         //flips card
-        if (!isFaceUp) {
+        if (!isFaceUp)
+        {
             if (isFlipping)
             {
                 if (!isRebounding)
@@ -188,12 +229,75 @@ public class CardBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// Used prmiarly to send debug.log messages. MouseOver has no gameplay functionality
+    /// Initiates a battle between player and comp card based on the chosen stat
     /// </summary>
-    public void OnMouseOver()
+    /// <param name="playerStat"></param>
+    /// <param name="computerStat"></param>
+    public void Battle(int playerStat, int computerStat)
     {
-        
+        //active the battle timer
+        battleTimerActive = true;
+        targetTime = 2.0f;
+
+        computerTopCard.GetComponent<CardBehavior>().FlipCard();
+
+        winner = null;
+        if (playerStat > computerStat)
+        {
+            winner = "player";
+        }
+        else if (playerStat < computerStat)
+        {
+            winner = "computer";
+        }
     }
+
+    private void MoveCardToCompetitorPile(string winner)
+    {
+        switch (winner)
+        {
+            case "player":
+                gameManager.playerCardScore += 1;
+                gameManager.computerCardScore -= 1;
+                GameObject[] playerCardsArray = GameObject.FindGameObjectsWithTag("PlayerCard");
+                for (int i = 0; i < playerCardsArray.Length; i++)
+                {
+                    playerCardsArray[i].transform.position = new Vector3(playerCardsArray[i].transform.position.x - 0.4f,
+                        playerCardsArray[i].transform.position.y + 0.4f, playerCardsArray[i].transform.position.z - 0.2f);
+                }
+
+                computerTopCard.transform.position = new Vector3(6f, -1f, 0f);
+                playerTopCard.transform.position = new Vector3(5.8f, -0.8f, -0.1f);
+                computerTopCard.tag = "PlayerCard";
+                playerTopCard.tag = "PlayerCard";
+                break;
+            case "computer":
+                gameManager.playerCardScore -= 1;
+                gameManager.computerCardScore += 1;
+                GameObject[] computerCardsArray = GameObject.FindGameObjectsWithTag("ComputerCard");
+                for (int i = 0; i < computerCardsArray.Length; i++)
+                {
+                    computerCardsArray[i].transform.position = new Vector3(computerCardsArray[i].transform.position.x + 0.4f,
+                        computerCardsArray[i].transform.position.y + 0.4f, computerCardsArray[i].transform.position.z - 0.2f);
+                }
+
+                playerTopCard.transform.position = new Vector3(-6f, -1f, -0f);
+                computerTopCard.transform.position = new Vector3(-5.8f, -0.8f, -0.1f);
+                computerTopCard.tag = "ComputerCard";
+                playerTopCard.tag = "ComputerCard";
+                break;
+        }
+
+        //set winner to null
+        computerTopCard.GetComponent<CardBehavior>().winner = null;
+        playerTopCard.GetComponent<CardBehavior>().winner = null;
+    }
+
+
+
+    //*********************************************************
+    // GET TOP CARDS
+    //*********************************************************
 
     /// <summary>
     /// Gets the player's top card, which is used to determine playability
@@ -276,83 +380,8 @@ public class CardBehavior : MonoBehaviour
         return topCard;
     }
 
-    /// <summary>
-    /// Initiates a battle between player and comp card based on the chosen stat
-    /// </summary>
-    /// <param name="playerStat"></param>
-    /// <param name="computerStat"></param>
-    public void Battle(int playerStat, int computerStat)
-    {
-        winner = null;
-        if (playerStat > computerStat)
-        {
-            winner = "player";
-            GameObject[] playerCardsArray = GameObject.FindGameObjectsWithTag("PlayerCard");
-            for (int i = 0; i< playerCardsArray.Length; i++)
-            {
-                playerCardsArray[i].transform.position = new Vector3(playerCardsArray[i].transform.position.x - 0.4f,
-                    playerCardsArray[i].transform.position.y + 0.4f, playerCardsArray[i].transform.position.z - 0.2f);
-            }
-            gameManager.playerCardScore += 1;
-            gameManager.computerCardScore -= 1;
-        }
-        else if (playerStat < computerStat)
-        {
-            winner = "computer";
-            GameObject[] computerCardsArray = GameObject.FindGameObjectsWithTag("ComputerCard");
-            for (int i = 0; i < computerCardsArray.Length; i++)
-            {
-                computerCardsArray[i].transform.position = new Vector3(computerCardsArray[i].transform.position.x + 0.4f,
-                    computerCardsArray[i].transform.position.y + 0.4f, computerCardsArray[i].transform.position.z - 0.2f);
-            }
-            gameManager.playerCardScore -= 1;
-            gameManager.computerCardScore += 1;
-        }
 
-        MoveCardToCompetitorPile(winner);
-    }
 
-    private void MoveCardToCompetitorPile(string winner)
-    {
-        GameObject tempComputerTopCard = GetComputerTopCard();
 
-        // 1. Count how many cards are to be moved (should always be 2, right?)
-        // 2. determine which pile to move the cards to (computer or player)
-        // 3. move all existing cards "to the winning pile" * the count of cards that are moving (to make room for the moved cards)
-        // 4. Add the moved cards to the new pile starting at the original positions (see Start() of GameManager.cs)
-        // 5. The destroy the two top cards. Be sure this destory still works after having moved cards up
-        
-        bc2d.isTrigger = false;
-
-        switch (winner)
-        {
-            case "player":
-                tempComputerTopCard.transform.position = new Vector3(6f, -1f, 0f);
-                transform.position = new Vector3(5.8f, -0.8f, -0.1f);
-                tempComputerTopCard.tag = "PlayerCard";
-                gameObject.tag = "PlayerCard";
-                break;
-            case "computer":
-                transform.position = new Vector3(-6f, -1f, -0f);
-                tempComputerTopCard.transform.position = new Vector3(-5.8f, -0.8f, -0.1f);
-                tempComputerTopCard.tag = "ComputerCard";
-                gameObject.tag = "ComputerCard";
-                break;
-        }
-
-        //flip both cards over to face down
-        tempComputerTopCard.GetComponent<CardBehavior>().FlipCard();
-        gameObject.GetComponent<CardBehavior>().FlipCard();
-
-        //set isBattling to false
-        tempComputerTopCard.GetComponent<CardBehavior>().isBattling = false;
-        gameObject.GetComponent<CardBehavior>().isBattling = false;
-        
-        //reset all TopCard values to false
-        tempComputerTopCard.GetComponent<CardBehavior>().isComputerTopCard = false;
-        gameObject.GetComponent<CardBehavior>().isComputerTopCard = false;
-        tempComputerTopCard.GetComponent<CardBehavior>().isPlayerTopCard = false;
-        gameObject.GetComponent<CardBehavior>().isPlayerTopCard = false;
-    }
     #endregion
 }

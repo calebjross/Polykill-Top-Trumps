@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     public int playerCardScore = 0;
     public int computerCardScore = 0;
 
+    //used for timing battles
+    public bool isBattling;
+
     #endregion
 
     #region Properties
@@ -48,6 +51,9 @@ public class GameManager : MonoBehaviour
     {
         //make computerCards match playerCards
         computerCards = playerCards;
+
+        //start game as not battling
+        isBattling = false;
 
         // shuffle original array before dealing out to player and computer
         Shuffle(playerCards);
@@ -86,7 +92,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Shuffle(GameObject[] array)
     {
-        for (int i = 0; i < array.Length - 1; i++)
+                for (int i = 0; i < array.Length - 1; i++)
         {
             int rnd = Random.Range(i, array.Length);
             tempGO = array[rnd];

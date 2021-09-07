@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 1899433129321199986}
   m_Layer: 3
   m_Name: Card_Jake
-  m_TagString: ComputerCard
+  m_TagString: PlayerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -263,9 +263,13 @@ MonoBehaviour:
   selectorSprite: {fileID: 21300000, guid: 678746e793121d049bd251dbc1328aa8, type: 3}
   selectorSound: {fileID: 0}
   isFaceUp: 0
-  isBattling: 0
+  winner: 
   isPlayerTopCard: 0
   isComputerTopCard: 0
+  targetTime: 0
+  battleTimerActive: 0
+  flipTargetTime: 0
+  flipTimerActive: 0
 --- !u!1 &4534916737333805098
 GameObject:
   m_ObjectHideFlags: 0

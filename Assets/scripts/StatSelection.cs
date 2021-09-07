@@ -9,12 +9,26 @@ public class StatSelection : MonoBehaviour
     CardBehavior cardBehavior;
     Renderer spriteRenderer;
     GameObject computerTopCard;
+    BoxCollider2D bc2d;
 
     private void Start()
     {
         cardBehavior = GetComponentInParent<CardBehavior>();
         spriteRenderer = GetComponent<Renderer>();
         spriteRenderer.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (bc2d != null)
+        {
+            //tracks clickability of box collider
+            if (cardBehavior.isFaceUp == true)
+            {
+                bc2d.enabled = true;
+            }
+            else bc2d.enabled = false;
+        }
     }
 
     public void OnMouseEnter()
@@ -63,24 +77,9 @@ public class StatSelection : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        GameObject[] StatBars = GameObject.FindGameObjectsWithTag("StatBar");
-        for (int i = 0; i < StatBars.Length; i++)
+        if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
         {
-            StatBars[i].GetComponent<BoxCollider2D>().enabled = false;
-        }
-
-        if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard && cardBehavior.isBattling)
-        {
-            cardBehavior.Battle(playerStat,computerStat);
-            
-            spriteRenderer.enabled = false;
-            if (computerTopCard.GetComponent<CardBehavior>().isBattling == false)
-            {
-                computerTopCard.GetComponent<CardBehavior>().FlipCard();
-                computerTopCard.GetComponent<CardBehavior>().isBattling = true;
-            }
-            
-            
+            cardBehavior.Battle(playerStat, computerStat);
         }
     }
 }
