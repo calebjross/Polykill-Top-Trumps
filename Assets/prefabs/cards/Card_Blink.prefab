@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4401203269446960799}
   m_Layer: 3
   m_Name: Card_Blink
-  m_TagString: ComputerCard
+  m_TagString: PlayerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

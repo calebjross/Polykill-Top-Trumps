@@ -20,15 +20,15 @@ public class StatSelection : MonoBehaviour
 
     private void Update()
     {
-        if (bc2d != null)
-        {
-            //tracks clickability of box collider
-            if (cardBehavior.isFaceUp == true)
-            {
-                bc2d.enabled = true;
-            }
-            else bc2d.enabled = false;
-        }
+        //if (bc2d != null)
+        //{
+        //    //tracks clickability of box collider
+        //    if (cardBehavior.isFaceUp == true)
+        //    {
+        //        bc2d.enabled = true;
+        //    }
+        //    else bc2d.enabled = false;
+        //}
     }
 
     public void OnMouseEnter()

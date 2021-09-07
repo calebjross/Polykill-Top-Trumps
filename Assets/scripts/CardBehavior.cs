@@ -235,11 +235,21 @@ public class CardBehavior : MonoBehaviour
     /// <param name="computerStat"></param>
     public void Battle(int playerStat, int computerStat)
     {
+        //set all stat boxes to unclickable
+        GameObject[] StatBars = GameObject.FindGameObjectsWithTag("StatBar");
+        for (int i = 0; i < StatBars.Length; i++)
+        {
+            StatBars[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+
         //active the battle timer
         battleTimerActive = true;
         targetTime = 2.0f;
 
-        computerTopCard.GetComponent<CardBehavior>().FlipCard();
+        if (computerTopCard.GetComponent<CardBehavior>().isFaceUp == false)
+        {
+            computerTopCard.GetComponent<CardBehavior>().FlipCard();
+        }
 
         winner = null;
         if (playerStat > computerStat)
