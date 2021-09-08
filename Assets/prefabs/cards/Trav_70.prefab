@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &1500559816454163824
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &4429323021952117481
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -321,6 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &4551200705168164356
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -445,6 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &2264275864020189287
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -569,6 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &7853241885230037913
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -636,7 +641,7 @@ GameObject:
   - component: {fileID: 3096706859151920335}
   m_Layer: 3
   m_Name: Trav_70
-  m_TagString: PlayerCard
+  m_TagString: ComputerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -960,6 +965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &5259846748029076225
 SpriteRenderer:
   m_ObjectHideFlags: 0

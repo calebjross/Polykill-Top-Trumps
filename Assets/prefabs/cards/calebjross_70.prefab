@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &3602270589610906911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &1585053071208541575
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -263,7 +265,7 @@ GameObject:
   - component: {fileID: 7316602034540855839}
   m_Layer: 3
   m_Name: calebjross_70
-  m_TagString: ComputerCard
+  m_TagString: PlayerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,7 +410,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0e6195fd393f9804da0a01d3a1785bb9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -565,6 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &5319464549449688054
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -689,6 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &4786716208272027361
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -813,6 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &7073073692838520962
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -937,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &6951757044465058927
 SpriteRenderer:
   m_ObjectHideFlags: 0

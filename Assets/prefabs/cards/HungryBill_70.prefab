@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4281337110377840639}
   m_Layer: 3
   m_Name: HungryBill_70
-  m_TagString: PlayerCard
+  m_TagString: ComputerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,7 +160,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0e6195fd393f9804da0a01d3a1785bb9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -317,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &3440555056026542875
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -441,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &846014570773109635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -565,6 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &6370597629090915870
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -689,6 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &6501484778834676467
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -813,6 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &8659761007193530493
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -937,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &8327994724315000170
 SpriteRenderer:
   m_ObjectHideFlags: 0

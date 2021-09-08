@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
     public int playerCardScore = 0;
     public int computerCardScore = 0;
 
+    // keep track of winning streaks
+    public int playerPreviousScore = 0;
+    public int computerPreviousScore = 0;
+    public int playerStreak = 0;
+    public int computerStreak = 0;
+
     #endregion
 
     #region Properties
@@ -127,6 +133,8 @@ public class GameManager : MonoBehaviour
     {
         playerText.text = "Player cards remaining: " + playerCardScore.ToString();
         computerText.text = "Computer cards remaining: " + computerCardScore.ToString();
+
+        Debug.Log("computer streak is " + computerStreak + ". player streak is " + playerStreak);
     }
 
     #endregion

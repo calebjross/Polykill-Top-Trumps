@@ -160,7 +160,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0e6195fd393f9804da0a01d3a1785bb9, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -317,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &2873220684963002593
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -441,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &278468500771078265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -565,6 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &5766890861745683940
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -689,6 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &5933806490684494089
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -813,6 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &8092214971823848327
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -937,6 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
+  isBattling: 1
 --- !u!212 &8931217990280263312
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -58,6 +58,9 @@ public class CardBehavior : MonoBehaviour
     public float flipTargetTime;
     public bool flipTimerActive;
 
+    //special conditions
+    GameAudio gameAudio;
+
     #endregion
 
     #region Properties
@@ -68,6 +71,8 @@ public class CardBehavior : MonoBehaviour
 
     private void Awake()
     {
+        gameAudio = Camera.main.GetComponent<GameAudio>();
+
         //establish card properties and state
         bc2d = GetComponent<BoxCollider2D>();
         gameManager = Camera.main.GetComponent<GameManager>();
@@ -112,6 +117,9 @@ public class CardBehavior : MonoBehaviour
     /// </summary>
     public void FlipCard()
     {
+        //play flip sound
+        gameAudio.isFlipSound = true;
+
         if (!isFaceUp)
         {
             //bc2d.enabled = true;
@@ -270,6 +278,8 @@ public class CardBehavior : MonoBehaviour
 
     private void MoveCardToCompetitorPile(string winner)
     {
+        gameManager.playerPreviousScore = gameManager.playerCardScore;
+        gameManager.computerPreviousScore = gameManager.computerCardScore;
         switch (winner)
         {
             case "player":
@@ -302,6 +312,23 @@ public class CardBehavior : MonoBehaviour
                 computerTopCard.tag = "ComputerCard";
                 playerTopCard.tag = "ComputerCard";
                 break;
+        }
+
+        // calculate win streak
+        if (gameManager.playerPreviousScore < gameManager.playerCardScore)
+        {
+            gameManager.playerStreak++;
+            gameManager.computerStreak = 0;
+        }
+        if (gameManager.playerPreviousScore > gameManager.playerCardScore)
+        {
+            gameManager.playerStreak = 0;
+            gameManager.computerStreak++;
+        }
+
+        if (gameManager.playerStreak == 3)
+        {
+            gameAudio.isOnFire = true;
         }
 
         //set winner to null
