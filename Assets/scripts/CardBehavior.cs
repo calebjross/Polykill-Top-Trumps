@@ -29,8 +29,6 @@ public class CardBehavior : MonoBehaviour
     Sprite cardBack;
     [SerializeField]
     public Sprite selectorSprite;
-    [SerializeField]
-    AudioClip selectorSound;
 
     //will help set images on the top and bottom of card
     SpriteRenderer spriteRenderer;
@@ -115,16 +113,16 @@ public class CardBehavior : MonoBehaviour
     {
         if (!isFaceUp)
         {
-            bc2d.enabled = true;
+            //bc2d.enabled = true;
             isFlipping = true;
-            bc2d.isTrigger = true;
+            //bc2d.isTrigger = true;
 
         }
         if (isFaceUp)
         {
-            bc2d.enabled = false;
+            //bc2d.enabled = false;
             isFlipping = true;
-            bc2d.isTrigger = false;
+            //bc2d.isTrigger = false;
         }
     }
 
@@ -140,8 +138,12 @@ public class CardBehavior : MonoBehaviour
             if (isFaceUp == true)
             {
                 bc2d.enabled = false;
-            }
-            else bc2d.enabled = true;
+                bc2d.isTrigger = false;
+            }  else
+            {
+                bc2d.enabled = true;
+                bc2d.isTrigger = true;
+            } 
         }
 
         //battle timer - allows time for the cards to flip
@@ -224,8 +226,8 @@ public class CardBehavior : MonoBehaviour
                         isRebounding = false;
                         flipXValue = 1;
                         isFlipping = false;
-                        isFaceUp = false;
-                        bc2d.enabled = true;
+                        //isFaceUp = false;
+                        //bc2d.enabled = true;
                     }
                 }
             }
@@ -305,6 +307,10 @@ public class CardBehavior : MonoBehaviour
         //set winner to null
         computerTopCard.GetComponent<CardBehavior>().winner = null;
         playerTopCard.GetComponent<CardBehavior>().winner = null;
+
+        //reset face
+        computerTopCard.GetComponent<CardBehavior>().isFaceUp = false;
+        playerTopCard.GetComponent<CardBehavior>().isFaceUp = false;
 
         //reset player stat UI
         gameManager.ResetChosenStats();

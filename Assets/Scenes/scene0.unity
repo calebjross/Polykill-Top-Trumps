@@ -242,20 +242,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCards:
-  - {fileID: 738889777201735792, guid: e7777c49d57b3894494a4f35c841cc8f, type: 3}
-  - {fileID: 5395627429235394379, guid: 812228e36b7f67a4d8e41db76b9152d1, type: 3}
+  - {fileID: 7022709851102601186, guid: 65097751ba7b5e543a9d47b335cb694b, type: 3}
+  - {fileID: 3502581041572967827, guid: 77608334dbe82b943a6a15c0015c9d03, type: 3}
   - {fileID: 1032640586824885250, guid: 088e6a8e28387834594eb8a51d3480b9, type: 3}
   - {fileID: 4356153502194069860, guid: de9b9216f9d3d0e43b5e4649c044eb1f, type: 3}
-  - {fileID: 357977837774987664, guid: b507864a561523442852664be9ee8646, type: 3}
-  - {fileID: 7780822197246406282, guid: 31bb098e398ef744e87fe517f646800f, type: 3}
-  - {fileID: 447080399638495224, guid: c36c65cfa6e827e42aee6452c57316c9, type: 3}
-  - {fileID: 7649115371975554153, guid: 6c3bcf7043e30434db57cbb4750e3a4a, type: 3}
-  - {fileID: 2998754914782382192, guid: 59fb9f7f33cb44d4f9459a2aafed22ce, type: 3}
-  - {fileID: 503809877403652384, guid: 3c15087ffeef9a04b90f2bac5d363db8, type: 3}
   playerText: {fileID: 562402235}
   computerText: {fileID: 183504127}
   playerStatText: {fileID: 634623244}
   computerStatText: {fileID: 677679984}
+  Vs: {fileID: 1554338334}
   playerCardScore: 0
   computerCardScore: 0
   isBattling: 0
@@ -504,7 +499,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1251029480}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -647,6 +642,7 @@ RectTransform:
   - {fileID: 562402234}
   - {fileID: 183504126}
   - {fileID: 634623243}
+  - {fileID: 1554338333}
   - {fileID: 677679983}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -722,3 +718,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1554338332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1554338333}
+  - component: {fileID: 1554338335}
+  - component: {fileID: 1554338334}
+  m_Layer: 5
+  m_Name: Vs.
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1554338333
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554338332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1251029480}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 182}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1554338334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554338332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 5dd49b3eacc540408c98eee0de38e0f1, type: 3}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 200
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 
+--- !u!222 &1554338335
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554338332}
+  m_CullTransparentMesh: 1

@@ -7,30 +7,37 @@ public class StatSelection : MonoBehaviour
     public int playerStat;
     public int computerStat;
     CardBehavior cardBehavior;
-    Renderer spriteRenderer;
+    Renderer renderer;
+    SpriteRenderer spriteRenderer;
     GameObject computerTopCard;
     BoxCollider2D bc2d;
     GameManager gameManager;
+    StatSounds statSounds;
 
     private void Start()
     {
         cardBehavior = GetComponentInParent<CardBehavior>();
-        spriteRenderer = GetComponent<Renderer>();
+        renderer = GetComponent<Renderer>();
+        spriteRenderer = GetComponentInParent<SpriteRenderer>();
         gameManager = Camera.main.GetComponent<GameManager>();
-        spriteRenderer.enabled = false;
+        bc2d = GetComponent<BoxCollider2D>();
+        renderer.enabled = false;
+        statSounds = GetComponentInParent<StatSounds>();
     }
 
     private void Update()
     {
-        //if (bc2d != null)
-        //{
-        //    //tracks clickability of box collider
-        //    if (cardBehavior.isFaceUp == true)
-        //    {
-        //        bc2d.enabled = true;
-        //    }
-        //    else bc2d.enabled = false;
-        //}
+        //ensures that colliders and triggers are only enabled when needed
+        if (!cardBehavior.isFaceUp && bc2d != null)
+        {
+            bc2d.enabled = false;
+            bc2d.isTrigger = false;
+        }
+        if (cardBehavior.isFaceUp && bc2d != null)
+        {
+            bc2d.enabled = true;
+            bc2d.isTrigger = true;
+        }
     }
 
     public void OnMouseEnter()
@@ -38,7 +45,8 @@ public class StatSelection : MonoBehaviour
         //determines which stat value to select from the player card
         if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
         {
-            spriteRenderer.enabled = true;
+            renderer.enabled = true;
+            spriteRenderer.sprite = cardBehavior.selectorSprite;
             computerTopCard = cardBehavior.GetComputerTopCard();
             switch (gameObject.name)
             {
@@ -70,12 +78,18 @@ public class StatSelection : MonoBehaviour
                     playerStat = 0;
                     break;
             }
+
+            if (statSounds != null)
+            {
+                //call to sounds script
+                statSounds.PlayMusic();
+            }
         }
     }
 
     private void OnMouseExit()
     {
-        spriteRenderer.enabled = false;
+        renderer.enabled = false;
     }
     private void OnMouseDown()
     {

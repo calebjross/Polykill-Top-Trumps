@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Text playerStatText;
     [SerializeField]
     public Text computerStatText;
+    public Text Vs;
 
     // used to establish the first card position
     float pxpos; //player
@@ -117,12 +118,14 @@ public class GameManager : MonoBehaviour
     public void DisplayChosenStats(int playerStat, int computerStat)
     {
         playerStatText.text = playerStat.ToString();
+        Vs.text = "Vs.";
         computerStatText.text = computerStat.ToString();
     }
 
     public void ResetChosenStats()
     {
         playerStatText.text = "";
+        Vs.text = "";
         computerStatText.text = "";
     }
 
