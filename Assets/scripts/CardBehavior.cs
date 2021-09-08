@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Provides the functionality of the card
@@ -35,7 +36,7 @@ public class CardBehavior : MonoBehaviour
 
     // determines card state
     public bool isFaceUp;
-    bool isFlipping;
+    public bool isFlipping;
     float flipXValue = 1.0f;
     [SerializeField]
     float flipXSpeed;
@@ -226,8 +227,6 @@ public class CardBehavior : MonoBehaviour
                         isRebounding = false;
                         flipXValue = 1;
                         isFlipping = false;
-                        //isFaceUp = false;
-                        //bc2d.enabled = true;
                     }
                 }
             }
@@ -247,6 +246,7 @@ public class CardBehavior : MonoBehaviour
         {
             StatBars[i].GetComponent<BoxCollider2D>().enabled = false;
         }
+        playerTopCard.GetComponent<AudioSource>().enabled = false;
 
         //active the battle timer
         battleTimerActive = true;
@@ -312,8 +312,18 @@ public class CardBehavior : MonoBehaviour
         computerTopCard.GetComponent<CardBehavior>().isFaceUp = false;
         playerTopCard.GetComponent<CardBehavior>().isFaceUp = false;
 
+        //reset audio
+        computerTopCard.GetComponent<AudioSource>().enabled = true;
+        playerTopCard.GetComponent<AudioSource>().enabled = true;
+
         //reset player stat UI
         gameManager.ResetChosenStats();
+
+        //end of game
+        if (gameManager.playerCardScore == 0 || gameManager.computerCardScore == 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
 

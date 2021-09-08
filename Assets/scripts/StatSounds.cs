@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class StatSounds : MonoBehaviour
 {
-
-    /// <summary>
-    /// Script NOT WORKING. I don't know why.
-    /// </summary>
-
-
     CardBehavior cardBehavior;
     [SerializeField]
     AudioClip[] audioClips = new AudioClip[9];
@@ -28,7 +22,7 @@ public class StatSounds : MonoBehaviour
 
     public void PlayMusic()
     {
-        audioSource.PlayOneShot(nextClip, 0.2f);
+        audioSource.PlayOneShot(nextClip, 1f);
         if (currentClip >= audioClips.Length - 1)
         {
             currentClip = 0;

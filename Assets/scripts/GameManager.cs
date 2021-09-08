@@ -43,9 +43,6 @@ public class GameManager : MonoBehaviour
     public int playerCardScore = 0;
     public int computerCardScore = 0;
 
-    //used for timing battles
-    public bool isBattling;
-
     #endregion
 
     #region Properties
@@ -60,9 +57,6 @@ public class GameManager : MonoBehaviour
     {
         //make computerCards match playerCards
         computerCards = playerCards;
-
-        //start game as not battling
-        isBattling = false;
 
         // shuffle original array before dealing out to player and computer
         Shuffle(playerCards);

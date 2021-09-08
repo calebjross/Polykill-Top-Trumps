@@ -13,6 +13,10 @@ public class StatSelection : MonoBehaviour
     BoxCollider2D bc2d;
     GameManager gameManager;
     StatSounds statSounds;
+    AudioSource audioSource;
+
+    //determines if sound effects play
+    public bool isBattling = true;
 
     private void Start()
     {
@@ -23,6 +27,7 @@ public class StatSelection : MonoBehaviour
         bc2d = GetComponent<BoxCollider2D>();
         renderer.enabled = false;
         statSounds = GetComponentInParent<StatSounds>();
+        audioSource = GetComponentInParent<AudioSource>();
     }
 
     private void Update()
@@ -83,6 +88,10 @@ public class StatSelection : MonoBehaviour
             {
                 //call to sounds script
                 statSounds.PlayMusic();
+            }
+            else
+            {
+                audioSource.Play();
             }
         }
     }
