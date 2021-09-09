@@ -39,4 +39,19 @@ public class LevelLoader : MonoBehaviour
         //load scene
         SceneManager.LoadScene(5);
     }
+
+    public void LoadStart()
+    {
+        StartCoroutine(LoadLevelStart());
+    }
+    IEnumerator LoadLevelStart()
+    {
+        //play animation
+        transition.SetTrigger("Start");
+        //wait
+        yield return new WaitForSeconds(transitionTime);
+
+        //load scene
+        SceneManager.LoadScene(1);
+    }
 }

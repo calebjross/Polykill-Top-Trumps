@@ -9,6 +9,7 @@ TagManager:
   - Undefined
   - Card
   - StatBar
+  - Music
   layers:
   - Default
   - TransparentFX

@@ -345,6 +345,13 @@ public class CardBehavior : MonoBehaviour
         computerTopCard.GetComponent<AudioSource>().enabled = true;
         playerTopCard.GetComponent<AudioSource>().enabled = true;
 
+        //reset isBattlingCantClick
+        GameObject[] StatBars = GameObject.FindGameObjectsWithTag("StatBar");
+        for (int i = 0; i < StatBars.Length; i++)
+        {
+            StatBars[i].GetComponent<StatSelection>().isBattlingCantClick = false;
+        }
+
         //reset player stat UI
         gameManager.ResetChosenStats();
 

@@ -89,6 +89,9 @@ public class InsultGenerator : MonoBehaviour
     {
         randomInsult = Random.Range(0, insults.Count);
         randomName = Random.Range(0, names.Count);
+
+        //stop menu music
+        GameObject.FindGameObjectWithTag("Music").GetComponent<MusicClass>().StopMusic();
     }
 
     private void Update()

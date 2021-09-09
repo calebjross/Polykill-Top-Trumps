@@ -15,8 +15,8 @@ public class StatSelection : MonoBehaviour
     StatSounds statSounds;
     AudioSource audioSource;
 
-    //determines if sound effects play
-    public bool isBattling = true;
+    //determines ability for stat menus to be interactive
+    public bool isBattlingCantClick;
 
     private void Start()
     {
@@ -28,6 +28,7 @@ public class StatSelection : MonoBehaviour
         renderer.enabled = false;
         statSounds = GetComponentInParent<StatSounds>();
         audioSource = GetComponentInParent<AudioSource>();
+        isBattlingCantClick = false;
     }
 
     private void Update()
@@ -102,10 +103,15 @@ public class StatSelection : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
+        if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard && !isBattlingCantClick)
         {
             cardBehavior.Battle(playerStat, computerStat);
             gameManager.DisplayChosenStats(playerStat, computerStat);
+            GameObject[] StatBars = GameObject.FindGameObjectsWithTag("StatBar");
+            for (int i = 0; i < StatBars.Length; i++)
+            {
+                StatBars[i].GetComponent<StatSelection>().isBattlingCantClick = true;
+            }
         }
     }
 }
