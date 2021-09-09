@@ -3,6 +3,9 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Oo]ut of Game Assets/
+[Ss]creenshots/
+[Dd]ocumentation/
 Assets/AssetStoreTools*
 
 # Visual Studio cache directory
