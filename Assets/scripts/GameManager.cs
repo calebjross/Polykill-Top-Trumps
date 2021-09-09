@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
     public int playerStreak = 0;
     public int computerStreak = 0;
 
+    //special conditions
+    GameAudio gameAudio;
+
     #endregion
 
     #region Properties
@@ -61,6 +64,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Start()
     {
+        gameAudio = GetComponent<GameAudio>();
+
         //make computerCards match playerCards
         computerCards = playerCards;
 
@@ -120,6 +125,8 @@ public class GameManager : MonoBehaviour
         playerStatText.text = playerStat.ToString();
         Vs.text = "Vs.";
         computerStatText.text = computerStat.ToString();
+        gameAudio.isBattling = true;
+
     }
 
     public void ResetChosenStats()
@@ -131,8 +138,8 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        playerText.text = "Player cards remaining: " + playerCardScore.ToString();
-        computerText.text = "Computer cards remaining: " + computerCardScore.ToString();
+        playerText.text = "Player cards: " + playerCardScore.ToString();
+        computerText.text = "Computer cards: " + computerCardScore.ToString();
 
         Debug.Log("computer streak is " + computerStreak + ". player streak is " + playerStreak);
     }

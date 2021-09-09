@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 2510004417965028362}
   m_Layer: 3
   m_Name: Briz_70
-  m_TagString: ComputerCard
+  m_TagString: PlayerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

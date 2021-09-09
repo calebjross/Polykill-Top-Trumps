@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 206661466908971430}
   m_Layer: 3
   m_Name: Musty_70
-  m_TagString: PlayerCard
+  m_TagString: ComputerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

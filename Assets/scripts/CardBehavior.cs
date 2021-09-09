@@ -283,6 +283,7 @@ public class CardBehavior : MonoBehaviour
         switch (winner)
         {
             case "player":
+                gameAudio.isPlayerWin = true;
                 gameManager.playerCardScore += 1;
                 gameManager.computerCardScore -= 1;
                 GameObject[] playerCardsArray = GameObject.FindGameObjectsWithTag("PlayerCard");
@@ -298,6 +299,7 @@ public class CardBehavior : MonoBehaviour
                 playerTopCard.tag = "PlayerCard";
                 break;
             case "computer":
+                gameAudio.isComputerWin = true;
                 gameManager.playerCardScore -= 1;
                 gameManager.computerCardScore += 1;
                 GameObject[] computerCardsArray = GameObject.FindGameObjectsWithTag("ComputerCard");
@@ -347,9 +349,14 @@ public class CardBehavior : MonoBehaviour
         gameManager.ResetChosenStats();
 
         //end of game
-        if (gameManager.playerCardScore == 0 || gameManager.computerCardScore == 0)
+        if (gameManager.playerCardScore == 0)
         {
             SceneManager.LoadScene(3);
+        }
+
+        if (gameManager.computerCardScore == 0)
+        {
+            SceneManager.LoadScene(4);
         }
     }
 
@@ -439,9 +446,5 @@ public class CardBehavior : MonoBehaviour
 
         return topCard;
     }
-
-
-
-
     #endregion
 }

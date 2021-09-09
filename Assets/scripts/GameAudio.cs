@@ -10,8 +10,12 @@ public class GameAudio : MonoBehaviour
     AudioSource audioSource;
 
     //special conditions
-    public bool isOnFire = false;
-    public bool isFlipSound = false;
+    public bool isOnFire = false; // winning streak
+    public bool isFlipSound = false;  // fard flip
+    public bool isBattling = false; // cards battling
+    public bool isPlayerWin = false; // indicates that the player has won a hand
+    public bool isComputerWin = false; // indicates that the computer has won a hand
+    /// </summary>
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +36,24 @@ public class GameAudio : MonoBehaviour
         {
             audioSource.PlayOneShot(audioClips[1], 1f);
             isFlipSound = false;
+        }
+
+        if(isBattling == true)
+        {
+            audioSource.PlayOneShot(audioClips[2], 1f);
+                isBattling = false;
+        }
+
+        if (isPlayerWin == true)
+        {
+            audioSource.PlayOneShot(audioClips[3], 1f);
+            isPlayerWin = false;
+        }
+
+        if (isComputerWin == true)
+        {
+            audioSource.PlayOneShot(audioClips[4], 1f);
+            isComputerWin = false;
         }
     }
 }

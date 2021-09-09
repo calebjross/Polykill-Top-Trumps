@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 7316602034540855839}
   m_Layer: 3
   m_Name: calebjross_70
-  m_TagString: PlayerCard
+  m_TagString: ComputerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
