@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4281337110377840639}
   m_Layer: 3
   m_Name: HungryBill_70
-  m_TagString: ComputerCard
+  m_TagString: PlayerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &3440555056026542875
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &846014570773109635
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &6370597629090915870
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &6501484778834676467
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &8659761007193530493
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &8327994724315000170
 SpriteRenderer:
   m_ObjectHideFlags: 0

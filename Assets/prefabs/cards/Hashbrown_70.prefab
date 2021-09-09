@@ -73,7 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &2188092758721969176
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &4032612983835827073
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &3866262331034810220
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &1577094468977946895
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &7382231107772156657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 6883246698635594474}
   m_Layer: 3
   m_Name: Hashbrown_70
-  m_TagString: PlayerCard
+  m_TagString: ComputerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &4787360803789976169
 SpriteRenderer:
   m_ObjectHideFlags: 0

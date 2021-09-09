@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5111888543942374968}
   m_Layer: 3
   m_Name: Blink_70
-  m_TagString: PlayerCard
+  m_TagString: ComputerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &2578882049072559251
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &560958541662735371
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &6218522080686103931
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &6061178644822487446
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &8383714410592974837
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &9216530889971104482
 SpriteRenderer:
   m_ObjectHideFlags: 0

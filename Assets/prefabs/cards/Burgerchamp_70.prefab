@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8602799835266767511}
   m_Layer: 3
   m_Name: Burgerchamp_70
-  m_TagString: ComputerCard
+  m_TagString: PlayerCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &2873220684963002593
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &278468500771078265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &5766890861745683940
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &5933806490684494089
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &8092214971823848327
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStat: 0
   computerStat: 0
-  isBattling: 1
+  isBattlingCantClick: 0
 --- !u!212 &8931217990280263312
 SpriteRenderer:
   m_ObjectHideFlags: 0

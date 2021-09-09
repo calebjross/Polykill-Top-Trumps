@@ -119,20 +119,7 @@ public class CardBehavior : MonoBehaviour
     {
         //play flip sound
         gameAudio.isFlipSound = true;
-
-        if (!isFaceUp)
-        {
-            //bc2d.enabled = true;
-            isFlipping = true;
-            //bc2d.isTrigger = true;
-
-        }
-        if (isFaceUp)
-        {
-            //bc2d.enabled = false;
-            isFlipping = true;
-            //bc2d.isTrigger = false;
-        }
+        isFlipping = true;
     }
 
     private void Update()
@@ -203,11 +190,11 @@ public class CardBehavior : MonoBehaviour
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
                     if (flipXValue >= 1)
                     {
-                        isRebounding = false;
-                        flipXValue = 1;
-                        isFlipping = false;
                         isFaceUp = true;
+                        flipXValue = 1;
                         bc2d.enabled = false;
+                        isFlipping = false;
+                        isRebounding = false;
                     }
                 }
             }
@@ -232,8 +219,8 @@ public class CardBehavior : MonoBehaviour
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
                     if (flipXValue >= 1)
                     {
-                        isRebounding = false;
                         flipXValue = 1;
+                        isRebounding = false;
                         isFlipping = false;
                     }
                 }
