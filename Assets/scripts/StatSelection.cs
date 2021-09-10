@@ -7,7 +7,7 @@ public class StatSelection : MonoBehaviour
     public int playerStat;
     public int computerStat;
     CardBehavior cardBehavior;
-    Renderer renderer;
+    Renderer _renderer;
     SpriteRenderer spriteRenderer;
     GameObject computerTopCard;
     BoxCollider2D bc2d;
@@ -21,11 +21,11 @@ public class StatSelection : MonoBehaviour
     private void Start()
     {
         cardBehavior = GetComponentInParent<CardBehavior>();
-        renderer = GetComponent<Renderer>();
+        _renderer = GetComponent<Renderer>();
         spriteRenderer = GetComponentInParent<SpriteRenderer>();
         gameManager = Camera.main.GetComponent<GameManager>();
         bc2d = GetComponent<BoxCollider2D>();
-        renderer.enabled = false;
+        _renderer.enabled = false;
         statSounds = GetComponentInParent<StatSounds>();
         audioSource = GetComponentInParent<AudioSource>();
         isBattlingCantClick = false;
@@ -51,7 +51,7 @@ public class StatSelection : MonoBehaviour
         //determines which stat value to select from the player card
         if (cardBehavior.isFaceUp && cardBehavior.isPlayerTopCard)
         {
-            renderer.enabled = true;
+            _renderer.enabled = true;
             spriteRenderer.sprite = cardBehavior.selectorSprite;
             computerTopCard = cardBehavior.GetComputerTopCard();
             switch (gameObject.name)
@@ -99,7 +99,7 @@ public class StatSelection : MonoBehaviour
 
     private void OnMouseExit()
     {
-        renderer.enabled = false;
+        _renderer.enabled = false;
     }
     private void OnMouseDown()
     {

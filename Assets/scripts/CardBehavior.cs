@@ -37,10 +37,11 @@ public class CardBehavior : MonoBehaviour
     // determines card state
     public bool isFaceUp;
     public bool isFlipping;
-    float flipXValue = 1.0f;
+    float flipXValue;
+    float originalFlipXValue;
     [SerializeField]
     float flipXSpeed;
-    bool isRebounding = false;
+    bool isRebounding;
     BoxCollider2D bc2d;
     public string winner;
 
@@ -52,7 +53,7 @@ public class CardBehavior : MonoBehaviour
     GameObject computerTopCard;
 
     //creates time for card flips before battle ends
-    public float targetTime;
+    public float battleTimerTarget;
     public bool battleTimerActive;
     // creates time for card flips after battle ends
     public float flipTargetTime;
@@ -79,11 +80,15 @@ public class CardBehavior : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         isFaceUp = false;
         isFlipping = false;
+        isRebounding = false;
         flipXSpeed = 0.2f;
     }
 
     private void Start()
     {
+        flipXValue = 1f;
+        originalFlipXValue = transform.lossyScale.x;
+
         if (isFaceUp)
         {
             bc2d.enabled = false;
@@ -145,12 +150,12 @@ public class CardBehavior : MonoBehaviour
         //battle timer - allows time for the cards to flip
         if (battleTimerActive)
         {
-            targetTime -= Time.deltaTime;
-            if (targetTime <= 0.0f)
+            battleTimerTarget -= Time.deltaTime;
+            if (battleTimerTarget <= 0.0f)
             {
                 battleTimerActive = false;
                 flipTimerActive = true;
-                flipTargetTime = 0.2f;
+                flipTargetTime = 0.5f;
                 //flip both cards after determining winner
                 computerTopCard.GetComponent<CardBehavior>().FlipCard();
                 playerTopCard.GetComponent<CardBehavior>().FlipCard();
@@ -170,61 +175,67 @@ public class CardBehavior : MonoBehaviour
         }
 
         //flips card
-        if (!isFaceUp)
+
+        if (isFlipping)
         {
-            if (isFlipping)
+            if (!isFaceUp)
             {
                 if (!isRebounding)
                 {
                     flipXValue -= flipXSpeed * (Time.deltaTime * 60);
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                    spriteRenderer.sprite = cardBack;
                     if (flipXValue <= 0)
                     {
                         isRebounding = true;
                     }
                 }
-                if (isRebounding)
+                else if (isRebounding)
                 {
-                    spriteRenderer.sprite = cardFront;
                     flipXValue += flipXSpeed * (Time.deltaTime * 60);
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                    spriteRenderer.sprite = cardFront;
                     if (flipXValue >= 1)
                     {
+                        flipXValue = originalFlipXValue;
                         isFaceUp = true;
-                        flipXValue = 1;
                         bc2d.enabled = false;
                         isFlipping = false;
                         isRebounding = false;
                     }
                 }
             }
-        } 
-        if (isFaceUp)
-        {
-            if (isFlipping)
+            else if (isFaceUp)
             {
                 if (!isRebounding)
                 {
                     flipXValue -= flipXSpeed * (Time.deltaTime * 60);
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                    spriteRenderer.sprite = cardFront;
                     if (flipXValue <= 0)
                     {
                         isRebounding = true;
                     }
                 }
-                if (isRebounding)
+                else if (isRebounding)
                 {
-                    spriteRenderer.sprite = cardBack;
                     flipXValue += flipXSpeed * (Time.deltaTime * 60);
                     transform.localScale = new Vector2(flipXValue, transform.localScale.y);
+                    spriteRenderer.sprite = cardBack;
                     if (flipXValue >= 1)
                     {
-                        flipXValue = 1;
+                        flipXValue = originalFlipXValue;
                         isRebounding = false;
                         isFlipping = false;
                     }
                 }
             }
+        }
+
+        //forces flipXvalue when not flipping
+        if (!isFlipping)
+        {
+            transform.localScale = new Vector2(originalFlipXValue, transform.localScale.y);
         }
     }
 
@@ -245,7 +256,7 @@ public class CardBehavior : MonoBehaviour
 
         //active the battle timer
         battleTimerActive = true;
-        targetTime = 2.0f;
+        battleTimerTarget = 2.0f;
 
         if (computerTopCard.GetComponent<CardBehavior>().isFaceUp == false)
         {

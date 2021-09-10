@@ -28,13 +28,9 @@ public class GameManager : MonoBehaviour
     float pxpos; //player
     float pypos; //player
     float pzpos; //player
-    float cardMoveSpeed = 0.3f;
-    float pxpos_final; // player final x position
     float cxpos; //computer
     float cypos; //computer
     float czpos; //computer
-    float cxpos_final; // computer final x position
-    bool isDealing = true;
 
     // used for Shuffle() method
     private GameObject tempGO;
@@ -140,8 +136,6 @@ public class GameManager : MonoBehaviour
     {
         playerText.text = "Player cards: " + playerCardScore.ToString();
         computerText.text = "Computer cards: " + computerCardScore.ToString();
-
-        Debug.Log("computer streak is " + computerStreak + ". player streak is " + playerStreak);
     }
 
     #endregion
